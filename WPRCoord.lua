@@ -104,46 +104,48 @@ Utils.PrintColor = function(Color, text)
 local logo = string.format([[
 	
 	
-                                                                                                                                       dddddddd
-                                                                                                                                       d::::::d
-                                                                                                                                       d::::::d
-                                                                                                                                       d::::::d
-                                                                                                                                       d:::::d 
-wwwwwww           wwwww           wwwwwwwppppp   ppppppppp            cccccccccccccccc   ooooooooooo   rrrrr   rrrrrrrrr       ddddddddd:::::d 
- w:::::w         w:::::w         w:::::w p::::ppp:::::::::p         cc:::::::::::::::c oo:::::::::::oo r::::rrr:::::::::r    dd::::::::::::::d 
-  w:::::w       w:::::::w       w:::::w  p:::::::::::::::::p       c:::::::::::::::::co:::::::::::::::or:::::::::::::::::r  d::::::::::::::::d 
-   w:::::w     w:::::::::w     w:::::w   pp::::::ppppp::::::p     c:::::::cccccc:::::co:::::ooooo:::::orr::::::rrrrr::::::rd:::::::ddddd:::::d 
-    w:::::w   w:::::w:::::w   w:::::w     p:::::p     p:::::p     c::::::c     ccccccco::::o     o::::o r:::::r     r:::::rd::::::d    d:::::d 
-     w:::::w w:::::w w:::::w w:::::w      p:::::p     p:::::p     c:::::c             o::::o     o::::o r:::::r     rrrrrrrd:::::d     d:::::d 
-      w:::::w:::::w   w:::::w:::::w       p:::::p     p:::::p     c:::::c             o::::o     o::::o r:::::r            d:::::d     d:::::d 
-       w:::::::::w     w:::::::::w        p:::::p    p::::::p     c::::::c     ccccccco::::o     o::::o r:::::r            d:::::d     d:::::d 
-        w:::::::w       w:::::::w         p:::::ppppp:::::::p     c:::::::cccccc:::::co:::::ooooo:::::o r:::::r            d::::::ddddd::::::dd
-         w:::::w         w:::::w          p::::::::::::::::p       c:::::::::::::::::co:::::::::::::::o r:::::r             d:::::::::::::::::d
-          w:::w           w:::w           p::::::::::::::pp         cc:::::::::::::::c oo:::::::::::oo  r:::::r              d:::::::::ddd::::d
-           www             www            p::::::pppppppp             cccccccccccccccc   ooooooooooo    rrrrrrr               ddddddddd   ddddd
-                                          p:::::p                                                                                              
-                                          p:::::p                                                                                              
-                                         p:::::::p                                                                                             
-                                         p:::::::p                                                                                             
-                                         p:::::::p                                                                                             
-                                         ppppppppp                                                                                             
+                                                                                                                                                        dddddddd
+                                                                                                                                                        d::::::d
+                                                                                                                                                        d::::::d
+                                                                                                                                                        d::::::d
+                                                                                                                                                        d:::::d 
+wwwwwww           wwwww           wwwwwwwppppp   ppppppppp            cccccccccccccccc   ooooooooooo      ooooooooooo   rrrrr   rrrrrrrrr       ddddddddd:::::d 
+ w:::::w         w:::::w         w:::::w p::::ppp:::::::::p         cc:::::::::::::::c oo:::::::::::oo  oo:::::::::::oo r::::rrr:::::::::r    dd::::::::::::::d 
+  w:::::w       w:::::::w       w:::::w  p:::::::::::::::::p       c:::::::::::::::::co:::::::::::::::oo:::::::::::::::or:::::::::::::::::r  d::::::::::::::::d 
+   w:::::w     w:::::::::w     w:::::w   pp::::::ppppp::::::p     c:::::::cccccc:::::co:::::ooooo:::::oo:::::ooooo:::::orr::::::rrrrr::::::rd:::::::ddddd:::::d 
+    w:::::w   w:::::w:::::w   w:::::w     p:::::p     p:::::p     c::::::c     ccccccco::::o     o::::oo::::o     o::::o r:::::r     r:::::rd::::::d    d:::::d 
+     w:::::w w:::::w w:::::w w:::::w      p:::::p     p:::::p     c:::::c             o::::o     o::::oo::::o     o::::o r:::::r     rrrrrrrd:::::d     d:::::d 
+      w:::::w:::::w   w:::::w:::::w       p:::::p     p:::::p     c:::::c             o::::o     o::::oo::::o     o::::o r:::::r            d:::::d     d:::::d 
+       w:::::::::w     w:::::::::w        p:::::p    p::::::p     c::::::c     ccccccco::::o     o::::oo::::o     o::::o r:::::r            d:::::d     d:::::d 
+        w:::::::w       w:::::::w         p:::::ppppp:::::::p     c:::::::cccccc:::::co:::::ooooo:::::oo:::::ooooo:::::o r:::::r            d::::::ddddd::::::dd
+         w:::::w         w:::::w          p::::::::::::::::p       c:::::::::::::::::co:::::::::::::::oo:::::::::::::::o r:::::r             d:::::::::::::::::d
+          w:::w           w:::w           p::::::::::::::pp         cc:::::::::::::::c oo:::::::::::oo  oo:::::::::::oo  r:::::r              d:::::::::ddd::::d
+           www             www            p::::::pppppppp             cccccccccccccccc   ooooooooooo      ooooooooooo    rrrrrrr               ddddddddd   ddddd
+                                          p:::::p                                                                                                               
+                                          p:::::p                                                                                                               
+                                         p:::::::p                                                                                                              
+                                         p:::::::p                                                                                                              
+                                         p:::::::p                                                                                                              
+                                         ppppppppp                                                                                                              
+                                                                                                                                                                
 	
-															888                   
-															888                   
-															888 888  888  8888b.  
-															888 888  888     "88b 
-															888 888  888 .d888888 
-															888 Y88b 888 888  888 
-															888  "Y88888 "Y888888 	
-							=======================================================================================
- 
-												Welcome back, %s! We happy to see you again!
+								  888                   
+								  888                   
+								  888 888  888  8888b.  
+								  888 888  888     "88b 
+								  888 888  888 .d888888 
+								  888 Y88b 888 888  888 
+								  888  "Y88888 "Y888888 	
+				=======================================================================================
 
-															   by [W.P] Game Room
-																Have a nice game!
-																  Version: 1.5
-													    Last Updated: 3rd Of September 2022
-													  		  Status: Stable (alpha)
+						     Welcome back, %s! We happy to see you again!
+
+								   by [W.P] Game Room
+								    Have a nice game!
+								      Version: 1.5
+						    	    Last Updated: 3rd Of September 2022
+								  Status: Stable (alpha)
+								     Private version
 ]], Cheat.GetCheatUserName())
 EngineClient.ExecuteClientCmd("clear")
 Utils.PrintColor(Color.RGBA(132, 195, 16, 255), logo)
