@@ -51,7 +51,6 @@ if protect.includes(protect.split(protect.database, ' '), username) then
   print(license_2)
 else
   print(license_1)
-  --thisScript():unload()
 end
 ---------------------
 local utils = {
