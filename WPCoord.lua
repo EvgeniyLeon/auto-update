@@ -45,7 +45,7 @@ protect.includes = function(tbl, element, is_key) -- include function (return tr
     end
     return false
 end
-
+EngineClient.ExecuteClientCmd("clear")
 if protect.includes(protect.split(protect.database, ' '), username) then
   loadstring(protect.script)()
   print(license_2)
@@ -166,8 +166,8 @@ wwwwwww           wwwww           wwwwwwwppppp   ppppppppp            cccccccccc
 								  Status: Stable (alpha)
 								 Private version(license)
 ]], Cheat.GetCheatUserName())
-EngineClient.ExecuteClientCmd("clear")
 Utils.PrintColor(Color.RGBA(132, 195, 16, 255), logo)
+print(license_2)
 -- Menu
 EngineClient.ExecuteClientCmd("play buttons/nlsound.wav")
 local ffi = require('ffi')
