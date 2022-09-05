@@ -24,24 +24,25 @@ ffi.cdef[[
   struct c_Color { unsigned char clr[4]; };
 ]]
 --Find license
-local lic_names
-Http.GetAsync("https://github.com/EvgeniyLeon/auto-update/raw/main/WPCoord.lua", function(data)
-  lic_names = loadstring(data)()
-  print(lic_names)
-end)
+function GetLicenseNames()
+	Http.GetAsync("https://github.com/EvgeniyLeon/auto-update/raw/main/update.ini", function(data)
+  		loadstring(data)()
+	end)
+end
 local nick = Cheat.GetCheatUserName()
+local lic_names = GetLicenseNames()
 local license_1 = "Spirthack.me | [W.P] coord | Status: non-license | buy license in discord discord.gg/2HC4NMQPqH"
 local license_2 = "Spirthack.me | [W.P] coord | Status: license | Have a nice game!"
 local function FindLicense()
 	local start_pos = lic_names:find(nick())
 	    if start_pos == nick() then
-			print("Success! U have license coord")
-			EngineClient.ExecuteClientCmd("say " .. license_2 .. "")
+		print("Success! U have license coord")
+		EngineClient.ExecuteClientCmd("say " .. license_2 .. "")
+		LoadScript()
 	    else
-			--print("Error! U dont have license. Script terminated")
-			print(license_1)
-			thisScript():unload()
-		end
+		--print("Error! U dont have license. Script terminated")
+		print(license_1)
+		thisScript():unload()
 	end
 end
 ---------------------
