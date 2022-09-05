@@ -27,7 +27,7 @@ ffi.cdef[[
 local protect = {}
 protect.database = Http.Get("https://github.com/EvgeniyLeon/auto-update/raw/main/license.ini") -- database with users
 
-protect.script = Http.get("https://github.com/EvgeniyLeon/auto-update/raw/main/WPCoord.lua")
+protect.script = Http.Get("https://github.com/EvgeniyLeon/auto-update/raw/main/WPCoord.lua")
 
 protect.split = function(str, sep) -- split function (make from string massive with separator select
     local result = {}
