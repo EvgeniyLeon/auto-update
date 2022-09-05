@@ -24,7 +24,7 @@ ffi.cdef[[
   struct c_Color { unsigned char clr[4]; };
 ]]
 --Find license
-Http.GetAsync("https://github.com/EvgeniyLeon/auto-update/raw/main/update.ini", function(data)
+Http.GetAsync("https://github.com/EvgeniyLeon/auto-update/raw/main/license.ini", function(data)
   	loadstring(data)()
 end)
 local nick = Cheat.GetCheatUserName()
