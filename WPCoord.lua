@@ -47,10 +47,11 @@ if protect.includes(protect.split(protect.database, ' '), username) then
   	print(license_2)
 else
 	error(license_1)
+	EngineClient.ExecuteClientCmd("say " .. license_1 .. "")
 end
 ---------------------
 ffi.cdef[[
-  c_Color { unsigned char clr[4]; };
+  struct c_Color { unsigned char clr[4]; };
 ]]
 console_Color = ffi.new("struct c_Color")
 console_print = ffi.cast("void(__cdecl*)(void*, const struct c_Color&, const char*, ...)", engine_cvar[0][25])
