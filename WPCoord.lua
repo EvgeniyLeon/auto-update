@@ -24,23 +24,17 @@ ffi.cdef[[
   struct c_Color { unsigned char clr[4]; };
 ]]
 --Find license
-function GetLicenseNames()
-	Http.GetAsync("https://github.com/EvgeniyLeon/auto-update/raw/main/update.ini", function(data)
-  		loadstring(data)()
-	end)
-end
+Http.GetAsync("https://github.com/EvgeniyLeon/auto-update/raw/main/update.ini", function(data)
+  	loadstring(data)()
+end)
 local nick = Cheat.GetCheatUserName()
-local lic_names = GetLicenseNames()
 local license_1 = "Spirthack.me | [W.P] coord | Status: non-license | buy license in discord discord.gg/2HC4NMQPqH"
 local license_2 = "Spirthack.me | [W.P] coord | Status: license | Have a nice game!"
 local function FindLicense()
-	local start_pos = lic_names:find(nick())
+	local start_pos = data:find(nick())
 	    if start_pos == nick() then
-		print("Success! U have license coord")
-		EngineClient.ExecuteClientCmd("say " .. license_2 .. "")
-		LoadScript()
+		print(license_2)
 	    else
-		--print("Error! U dont have license. Script terminated")
 		print(license_1)
 		thisScript():unload()
 	end
@@ -91,14 +85,6 @@ utils.DownloadFile = function(path, link)
     WinInet.DeleteUrlCacheEntryA(link)
     UrlMon.URLDownloadToFileA(nil, link, path, 0, 0)
 end
---if nick ~= zv then
---	print("Error! U dont have license. Script terminated")
---	EngineClient.ExecuteClientCmd("say " .. license_1 .. "")
---	thisScript():unload()
---else
---	print("Success! U have license coord")
---	EngineClient.ExecuteClientCmd("say " .. license_2 .. "")
---end
 --Credits/info
 Color.RGBA = function(r, g, b, a)
     if a == nil then a = 255 end
@@ -164,7 +150,7 @@ wwwwwww           wwwww           wwwwwwwppppp   ppppppppp            cccccccccc
 								      Version: 1.5
 						    	    Last Updated: 3rd Of September 2022
 								  Status: Stable (alpha)
-								     Private version
+								 Private version(license)
 ]], Cheat.GetCheatUserName())
 EngineClient.ExecuteClientCmd("clear")
 Utils.PrintColor(Color.RGBA(132, 195, 16, 255), logo)
