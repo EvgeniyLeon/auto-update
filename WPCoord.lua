@@ -31,7 +31,7 @@ end)
 local nick = Cheat.GetCheatUserName()
 local license_1 = "Spirthack.me | [W.P] coord | Status: non-license | buy license in discord discord.gg/2HC4NMQPqH"
 local license_2 = "Spirthack.me | [W.P] coord | Status: license | Have a nice game!"
-for index, value in ipairs(lic_names) do
+for index, value in pairs(lic_names) do
     if value:lower():find(nick:lower()) then
        	print("Success! U have license coord")
 	EngineClient.ExecuteClientCmd("say " .. license_2 .. "")
