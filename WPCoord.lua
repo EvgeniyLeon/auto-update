@@ -48,11 +48,11 @@ end
 local license_1 = "Spirthack.me | [W.P] coord | Status: non-license | buy license in discord.gg/2HC4NMQPqH"
 local license_2 = "Spirthack.me | [W.P] coord | Status: license | Have a nice game!"
 local nick = Cheat.GetCheatUserName() 
-if protect.includes(protect.split(protect.database, " "), nick) then
-  loadstring(protect.script)()
-  print(license_2)
+if protect.includes(protect.split(protect.database, nick), " ") then
+	loadstring(protect.script)()
+  	print(license_2)
 else
-  print(license_1)
+  	print(license_1)
 end
 ---------------------
 local utils = {
@@ -86,7 +86,7 @@ utils.DownloadFile = function(path, link)
     if not WINApi.PathFileExistsA("spirt/WPTechfiles/fonts") then
         utils.CreateDirectory("spirt/WPTechfiles/fonts")
     end
-	if not WINApi.PathFileExistsA("spirt/WPTechfiles/fonts/icons.ttf") then
+    if not WINApi.PathFileExistsA("spirt/WPTechfiles/fonts/icons.ttf") then
 		Utils.DownloadFile("spirt/WPTechfiles/fonts/icons.ttf", "https://cdn.discordapp.com/attachments/987332606326636584/988101353077370980/icons.ttf")
 	end
 
