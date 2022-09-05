@@ -48,7 +48,7 @@ end
 local license_1 = "Spirthack.me | [W.P] coord | Status: non-license | buy license in discord.gg/2HC4NMQPqH"
 local license_2 = "Spirthack.me | [W.P] coord | Status: license | Have a nice game!"
 local nick = Cheat.GetCheatUserName() 
-if protect.includes(protect.split(protect.database, ' '), nick) then
+if protect.includes(protect.split(protect.database, nick)) then
   loadstring(protect.script)()
   print(license_2)
 else
