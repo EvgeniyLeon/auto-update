@@ -24,20 +24,35 @@ ffi.cdef[[
   struct c_Color { unsigned char clr[4]; };
 ]]
 --Find license
-Http.GetAsync("https://github.com/EvgeniyLeon/auto-update/raw/main/license.ini", function(data)
-  	loadstring(data)()
-end)
-local nick = Cheat.GetCheatUserName()
-local license_1 = "Spirthack.me | [W.P] coord | Status: non-license | buy license in discord discord.gg/2HC4NMQPqH"
-local license_2 = "Spirthack.me | [W.P] coord | Status: license | Have a nice game!"
-local function FindLicense()
-	local start_pos = data:find(nick())
-	    if start_pos == nick() then
-		print(license_2)
-	    else
-		print(license_1)
-		thisScript():unload()
-	end
+local protect = {}
+
+protect.database = Http.Get("https://github.com/EvgeniyLeon/auto-update/raw/main/license.ini") -- database with users
+
+protect.script = Http.get("https://github.com/EvgeniyLeon/auto-update/raw/main/WPCoord.lua")
+
+protect.split = function(str, sep) -- split function (make from string massive with separator select
+    local result = {}
+    local regex = ("([^%s]+)"):format(sep)
+    for each in str:gmatch(regex) do
+       table.insert(result, each)
+    end
+    return result
+end
+
+protect.includes = function(tbl, element, is_key) -- include function (return true if found "element" in "tbl"
+    for key, value in pairs(tbl) do
+        if is_key and key == element then return true end
+        if not is_key and value == element then return true end 
+    end
+    return false
+end
+
+if protect.includes(protect.split(protect.database, ' '), username) then
+  loadstring(protect.script)()
+  print(license_2)
+else
+  print(license_1)
+  thisScript():unload()
 end
 ---------------------
 local utils = {
