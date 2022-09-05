@@ -17,9 +17,6 @@ ffi.cdef[[
 	int ShellExecuteA(void* hwnd, const char* lpOperation, const char* lpFile, const char* lpParameters, const char* lpDirectory, int nShowCmd);
 	typedef void(__thiscall* find_or_load_model_t)(void*, const char*);
 ]]
-ffi.cdef[[
-  struct c_Color { unsigned char clr[4]; };
-]]
 --Find license
 local protect = {}
 protect.database = Http.Get("https://github.com/EvgeniyLeon/auto-update/raw/main/license.ini") -- database with users
@@ -52,6 +49,9 @@ else
 	error(license_1)
 end
 ---------------------
+ffi.cdef[[
+  c_Color { unsigned char clr[4]; };
+]]
 console_Color = ffi.new("struct c_Color")
 console_print = ffi.cast("void(__cdecl*)(void*, const struct c_Color&, const char*, ...)", engine_cvar[0][25])
 local utils = {
