@@ -25,7 +25,6 @@ ffi.cdef[[
 ]]
 --Find license
 local protect = {}
-
 protect.database = Http.Get("https://github.com/EvgeniyLeon/auto-update/raw/main/license.ini") -- database with users
 
 protect.script = Http.Get("https://github.com/EvgeniyLeon/auto-update/raw/main/WPCoord.lua")
@@ -52,7 +51,7 @@ if protect.includes(protect.split(protect.database, ' '), username) then
   print(license_2)
 else
   print(license_1)
-  thisScript():unload()
+  --thisScript():unload()
 end
 ---------------------
 local utils = {
