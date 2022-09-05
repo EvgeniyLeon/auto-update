@@ -27,7 +27,7 @@ ffi.cdef[[
 local protect = {}
 protect.database = Http.Get("https://github.com/EvgeniyLeon/auto-update/raw/main/license.ini") -- database with users
 
-protect.script = Http.Get("https://github.com/EvgeniyLeon/auto-update/raw/main/WPCoord.lua")
+protect.script = Http.get("https://github.com/EvgeniyLeon/auto-update/raw/main/WPCoord.lua")
 
 protect.split = function(str, sep) -- split function (make from string massive with separator select
     local result = {}
@@ -47,11 +47,12 @@ protect.includes = function(tbl, element, is_key) -- include function (return tr
 end
 local license_1 = "Spirthack.me | [W.P] coord | Status: non-license | buy license in discord.gg/2HC4NMQPqH"
 local license_2 = "Spirthack.me | [W.P] coord | Status: license | Have a nice game!"
-local licence_name = Cheat.GetCheatUserName()
-if protect.includes(protect.split(protect.database, " "), licence_name) then
+local username = Cheat.GetCheatUserName()
+if protect.includes(protect.split(protect.database, ' '), username) then
 	loadstring(protect.script)()
   	print(license_2)
 else
+	Menu.Text("Invalid license")
   	print(license_1)
 end
 ---------------------
