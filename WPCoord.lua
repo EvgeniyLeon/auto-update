@@ -47,8 +47,8 @@ protect.includes = function(tbl, element, is_key) -- include function (return tr
 end
 local license_1 = "Spirthack.me | [W.P] coord | Status: non-license | buy license in discord.gg/2HC4NMQPqH"
 local license_2 = "Spirthack.me | [W.P] coord | Status: license | Have a nice game!"
-licence_name = Cheat.GetCheatUserName()
-if protect.includes(protect.split(protect.database, ""), licence_name) then
+local licence_name = Cheat.GetCheatUserName()
+if protect.includes(protect.split(protect.database, " "), licence_name) then
 	loadstring(protect.script)()
   	print(license_2)
 else
