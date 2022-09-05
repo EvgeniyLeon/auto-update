@@ -1,6 +1,3 @@
---[[
-	Original author: discord.gg/2HC4NMQPqH
-]]
 ffi.cdef [[
     typedef struct {
         unsigned short wYear;
@@ -50,7 +47,7 @@ local license_2 = "Spirthack.me | [W.P] coord | Status: license | Have a nice ga
 local username = Cheat.GetCheatUserName()
 if protect.includes(protect.split(protect.database, ' '), username) then
 	loadstring(protect.script)()
-  	--print(license_2)
+  	print(license_2)
 else
 	Menu.Text("Invalid license")
   	print(license_1)
