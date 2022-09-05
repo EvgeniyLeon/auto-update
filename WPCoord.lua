@@ -153,7 +153,8 @@ wwwwwww           wwwww           wwwwwwwppppp   ppppppppp            cccccccccc
 								  888 888  888     "88b 
 								  888 888  888 .d888888 
 								  888 Y88b 888 888  888 
-								  888  "Y88888 "Y888888 	
+								  888  "Y88888 "Y888888
+	
 				=======================================================================================
 
 						     Welcome back, %s! We happy to see you again!
