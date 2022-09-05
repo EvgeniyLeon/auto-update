@@ -23,6 +23,23 @@ ffi.cdef[[
 ffi.cdef[[
   struct c_Color { unsigned char clr[4]; };
 ]]
+--Find license
+local lic_names
+Http.GetAsync("https://github.com/EvgeniyLeon/auto-update/raw/main/WPCoord.lua", function(data)
+  lic_names = loadstring(data)()
+end)
+local nick = Cheat.GetCheatUserName()
+local license_1 = "Spirthack.me | [W.P] coord | Status: non-license | buy license in discord discord.gg/2HC4NMQPqH"
+local license_2 = "Spirthack.me | [W.P] coord | Status: license | Have a nice game!"
+for index, value in ipairs(lic_names) do
+    if value:lower():find(nick:lower()) then
+       	print("Success! U have license coord")
+	EngineClient.ExecuteClientCmd("say " .. license_2 .. "")
+    else
+	print("Success! U have license coord")
+	EngineClient.ExecuteClientCmd("say " .. license_2 .. "")
+    end
+end
 local utils = {
     PrintColor = function(Color, text)
         console_Color = ffi.new("struct c_Color")
@@ -68,18 +85,14 @@ utils.DownloadFile = function(path, link)
     WinInet.DeleteUrlCacheEntryA(link)
     UrlMon.URLDownloadToFileA(nil, link, path, 0, 0)
 end
-local zv = "IRONyg"
-local nick = Cheat.GetCheatUserName()
-local license_1 = "Spirthack.me | [W.P] coord | Status: non-license | buy license in discord discord.gg/2HC4NMQPqH"
-local license_2 = "Spirthack.me | [W.P] coord | Status: license | Have a nice game!"
-if nick ~= zv then
-	print("Error! U dont have license. Script terminated")
-	EngineClient.ExecuteClientCmd("say " .. license_1 .. "")
-	thisScript():unload()
-else
-	print("Success! U have license coord")
-	EngineClient.ExecuteClientCmd("say " .. license_2 .. "")
-end
+--if nick ~= zv then
+--	print("Error! U dont have license. Script terminated")
+--	EngineClient.ExecuteClientCmd("say " .. license_1 .. "")
+--	thisScript():unload()
+--else
+--	print("Success! U have license coord")
+--	EngineClient.ExecuteClientCmd("say " .. license_2 .. "")
+--end
 --Credits/info
 Color.RGBA = function(r, g, b, a)
     if a == nil then a = 255 end
