@@ -49,7 +49,6 @@ if protect.includes(protect.split(protect.database, ' '), username) then
 	loadstring(protect.script)()
   	print(license_2)
 else
-	Menu.Text("Invalid license")
 	error(license_1)
 end
 ---------------------
@@ -177,8 +176,8 @@ local logs_1 = Menu.Text("[W.P].coord / Logs", "Added: New clantags, anime menu,
 local logs_2 = Menu.Text("[W.P].coord / Logs", "Fixed: Watermark(console), bugs")
 --local button = Menu.Button("[W.P].coord / Info", "Have a nice game!")
 local credits = Menu.Text("[W.P].coord / Credits", "Maded by: EvGeN YG: yougame.biz/members/147749/ VK: vk.com/e1vg3n")
-local warning = Menu.Text("[W.P].coord / Credits", "В доработке")
-local alpha = Menu.Text("[W.P].coord / Credits", "В Альфа версии")
+local warning = Menu.Text("[W.P].coord / Credits", "Soon")
+local alpha = Menu.Text("[W.P].coord / Credits", "In Alpha Version")
 local animegirls = Menu.Combo( "Anime Tyans","Up", {"Off" ,"Astolfo", "Megumin", "Rias DXD", "Sitting Loli", "Akeno Himejima DXD", "Hentai #1", "Hentai #2", "Hentai #3"}, 0)
 local animegirls_left = Menu.Combo( "Anime Tyans","Left", {"Off" ,"Eromanga Sensei", "Cute Loli", "Cute Neko Loli", "Kawaii Blonde Girl", "Hentai #1"}, 0)
 local animegirls_right = Menu.Combo( "Anime Tyans","Right", {"Off", "Eromanga", "Tyan with umbrella", "Neko Tyan", "Undressed Loli", "Hentai #1"}, 0)
