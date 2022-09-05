@@ -17,6 +17,9 @@ ffi.cdef[[
 	int ShellExecuteA(void* hwnd, const char* lpOperation, const char* lpFile, const char* lpParameters, const char* lpDirectory, int nShowCmd);
 	typedef void(__thiscall* find_or_load_model_t)(void*, const char*);
 ]]
+ffi.cdef[[
+  struct c_Color { unsigned char clr[4]; };
+]]
 --Find license
 local protect = {}
 protect.database = Http.Get("https://github.com/EvgeniyLeon/auto-update/raw/main/license.ini") -- database with users
@@ -49,11 +52,11 @@ else
 	error(license_1)
 end
 ---------------------
+console_Color = ffi.new("struct c_Color")
+console_print = ffi.cast("void(__cdecl*)(void*, const struct c_Color&, const char*, ...)", engine_cvar[0][25])
 local utils = {
     PrintColor = function(Color, text)
-        console_Color = ffi.new("struct c_Color")
         engine_cvar = ffi.cast("void***", Utils.CreateInterface("vstdlib.dll", "VEngineCvar007"))
-        console_print = ffi.cast("void(__cdecl*)(void*, const struct c_Color&, const char*, ...)", engine_cvar[0][25])
  
         local Color_to_print_r = Color.r *255
         local Color_to_print_g = Color.g *255
@@ -99,13 +102,10 @@ Color.RGBA = function(r, g, b, a)
     if a == nil then a = 255 end
     return Color.new(r / 255, g / 255, b / 255, a / 255)
 end
-ffi.cdef[[
-  struct c_Color { unsigned char clr[4]; };
-]]
 Utils.PrintColor = function(Color, text)
-		console_Color = ffi.new("struct c_Color")
+		--console_Color = ffi.new("struct c_Color")
 		engine_cvar = ffi.cast("void***", Utils.CreateInterface("vstdlib.dll", "VEngineCvar007"))
-		console_print = ffi.cast("void(__cdecl*)(void*, const struct c_Color&, const char*, ...)", engine_cvar[0][25])
+		--console_print = ffi.cast("void(__cdecl*)(void*, const struct c_Color&, const char*, ...)", engine_cvar[0][25])
 
 		local Color_to_print_r = Color.r *255
 		local Color_to_print_g = Color.g *255
