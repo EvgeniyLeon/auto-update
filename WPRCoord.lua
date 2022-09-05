@@ -51,18 +51,17 @@ utils.DownloadFile = function(path, link)
     if not WINApi.PathFileExistsA("spirt/evgenfiles") then
         utils.CreateDirectory("spirt/evgenfiles")
     end
- 
     if not WINApi.PathFileExistsA("spirt/evgenfiles/fonts") then
         utils.CreateDirectory("spirt/evgenfiles/fonts")
     end
 	if not WINApi.PathFileExistsA("spirt/evgenfiles/fonts/icons.ttf") then
-    Utils.DownloadFile("spirt/evgenfiles/fonts/icons.ttf", "https://cdn.discordapp.com/attachments/987332606326636584/988101353077370980/icons.ttf")
+		Utils.DownloadFile("spirt/evgenfiles/fonts/icons.ttf", "https://cdn.discordapp.com/attachments/987332606326636584/988101353077370980/icons.ttf")
 	end
-	 
+
 	if not WINApi.PathFileExistsA("spirt/evgenfiles/fonts/pixel.ttf") then
 		Utils.DownloadFile("spirt/evgenfiles/fonts/pixel.ttf", "https://cdn.discordapp.com/attachments/987332606326636584/988101353240936488/pixel.ttf")
 	end
-	 
+
 	if not WINApi.PathFileExistsA("spirt/evgenfiles/fonts/MuseoSansCyrl700.ttf") then
 		Utils.DownloadFile("spirt/evgenfiles/fonts/MuseoSansCyrl700.ttf", "https://cdn.discordapp.com/attachments/987332606326636584/1001360700528132256/MuseoSansCyrl700.ttf")
 	end
@@ -129,47 +128,25 @@ wwwwwww           wwwww           wwwwwwwppppp   ppppppppp            cccccccccc
                                          p:::::::p                                                                                             
                                          ppppppppp                                                                                             
 	
-								888                   
-								888                   
-								888 888  888  8888b.  
-								888 888  888     "88b 
-								888 888  888 .d888888 
-								888 Y88b 888 888  888 
-								888  "Y88888 "Y888888 	
-=======================================================================================
+															888                   
+															888                   
+															888 888  888  8888b.  
+															888 888  888     "88b 
+															888 888  888 .d888888 
+															888 Y88b 888 888  888 
+															888  "Y88888 "Y888888 	
+							=======================================================================================
  
-	Welcome back, %s! We happy to see you again!
+												Welcome back, %s! We happy to see you again!
 
-                   by [W.P] Game Room
-                    Have a nice game!
-                      Version: 1.5
-	    Last Updated: 3rd Of September 2022
-		  Status: Stable (alpha)
+															   by [W.P] Game Room
+																Have a nice game!
+																  Version: 1.5
+													    Last Updated: 3rd Of September 2022
+													  		  Status: Stable (alpha)
 ]], Cheat.GetCheatUserName())
 EngineClient.ExecuteClientCmd("clear")
 Utils.PrintColor(Color.RGBA(132, 195, 16, 255), logo)
-[[print (" ◊ ◊ ◊ ◊ ◊ ◊ ◊ ◊ ◊ ◊ ◊ ◊ ◊ ◊ ◊ ◊ ◊ ◊ ◊ ◊ ◊ ◊ ◊ ◊ ◊ ◊ ◊")
-print ("◊                                                     ◊")
-print ("◊		   __    __   __      _   __	      ◊")
-print ("◊		   ||   / |  / /     //   ) )         ◊")
-print ("◊		   ||  /  | / /     //___/ /          ◊")
-print ("◊		   || / /||/ /     / ____ /	      ◊")
-print ("◊		   ||/ / |  /     //   		      ◊")
-print ("◊		   |  /  | /    ()/ 		      ◊")
-print ("◊                                                     ◊")
-print ("◊                   by [W.P] Game Room                ◊")
-print ("◊                    Have a nice game!                ◊")
-print ("◊                      Version: 1.5                   ◊")
-print ("◊	     Last Updated: 3rd Of September 2022      ◊")
-print ("◊                Status: Stable (alpha)               ◊")
-print ("◊                                                     ◊")
-print ("◊                                                     ◊")
-print (" ◊ ◊ ◊ ◊ ◊ ◊ ◊ ◊ ◊ ◊ ◊ ◊ ◊ ◊ ◊ ◊ ◊ ◊ ◊ ◊ ◊ ◊ ◊ ◊ ◊ ◊ ◊")
-print ("◊                                                     ◊")
-print("◊      	    nlsound.wav to the folder 'buttons'        ◊")
-print ("◊                                                     ◊")
-print (" ◊ ◊ ◊ ◊ ◊ ◊ ◊ ◊ ◊ ◊ ◊ ◊ ◊ ◊ ◊ ◊ ◊ ◊ ◊ ◊ ◊ ◊ ◊ ◊ ◊ ◊ ◊")
-]]
 -- Menu
 EngineClient.ExecuteClientCmd("play buttons/nlsound.wav")
 local ffi = require('ffi')
