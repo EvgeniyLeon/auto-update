@@ -50,8 +50,7 @@ if protect.includes(protect.split(protect.database, ' '), username) then
   	print(license_2)
 else
 	Menu.Text("Invalid license")
-  	print(license_1)
-	unload()
+	error(license_1)
 end
 ---------------------
 local utils = {
