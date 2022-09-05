@@ -45,7 +45,8 @@ protect.includes = function(tbl, element, is_key) -- include function (return tr
     end
     return false
 end
-EngineClient.ExecuteClientCmd("clear")
+local license_1 = "Spirthack.me | [W.P] coord | Status: non-license | buy license in discord.gg/2HC4NMQPqH"
+local license_2 = "Spirthack.me | [W.P] coord | Status: license | Have a nice game!"
 if protect.includes(protect.split(protect.database, ' '), username) then
   loadstring(protect.script)()
   print(license_2)
@@ -166,8 +167,8 @@ wwwwwww           wwwww           wwwwwwwppppp   ppppppppp            cccccccccc
 								  Status: Stable (alpha)
 								 Private version(license)
 ]], Cheat.GetCheatUserName())
+EngineClient.ExecuteClientCmd("clear")
 Utils.PrintColor(Color.RGBA(132, 195, 16, 255), logo)
-print(license_2)
 -- Menu
 EngineClient.ExecuteClientCmd("play buttons/nlsound.wav")
 local ffi = require('ffi')
@@ -176,7 +177,7 @@ local info = Menu.Text("[W.P].coord ALPHA/ Info", "Version: 1.5/Last Updated: 3r
 local logs_1 = Menu.Text("[W.P].coord / Logs", "Added: New clantags, anime menu, watermark, trashtalk(Alpha), NadeHelper(Alpha)")
 local logs_2 = Menu.Text("[W.P].coord / Logs", "Fixed: Watermark(console), bugs")
 --local button = Menu.Button("[W.P].coord / Info", "Have a nice game!")
-local credits = Menu.Text("[W.P].coord / Credits", "Maded by: discord.gg/2HC4NMQPqH")
+local credits = Menu.Text("[W.P].coord / Credits", "Maded by: EvGeN YG: yougame.biz/members/147749/ VK: vk.com/e1vg3n")
 local warning = Menu.Text("[W.P].coord / Credits", "В доработке")
 local alpha = Menu.Text("[W.P].coord / Credits", "В Альфа версии")
 local animegirls = Menu.Combo( "Anime Tyans","Up", {"Off" ,"Astolfo", "Megumin", "Rias DXD", "Sitting Loli", "Akeno Himejima DXD", "Hentai #1", "Hentai #2", "Hentai #3"}, 0)
