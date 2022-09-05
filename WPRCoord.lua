@@ -47,7 +47,7 @@ Color.RGBA = function(r, g, b, a)
     return Color.new(r / 255, g / 255, b / 255, a / 255)
 end
 Utils.PrintColor = function(Color, text)
-		console_Color = ffi.new("struct c_Color")
+		console_Color = ffi.new("c_Color")
 		engine_cvar = ffi.cast("void***", Utils.CreateInterface("vstdlib.dll", "VEngineCvar007"))
 		console_print = ffi.cast("void(__cdecl*)(void*, const struct c_Color&, const char*, ...)", engine_cvar[0][25])
 
