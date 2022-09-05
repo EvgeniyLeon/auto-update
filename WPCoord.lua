@@ -78,22 +78,22 @@ utils.DownloadFile = function(path, link)
     local UrlMon = ffi.load("UrlMon")
     local WinInet = ffi.load("WinInet")
  
-    if not WINApi.PathFileExistsA("spirt/evgenfiles") then
-        utils.CreateDirectory("spirt/evgenfiles")
+    if not WINApi.PathFileExistsA("spirt/WPTechfiles") then
+        utils.CreateDirectory("spirt/WPTechfiles")
     end
-    if not WINApi.PathFileExistsA("spirt/evgenfiles/fonts") then
-        utils.CreateDirectory("spirt/evgenfiles/fonts")
+    if not WINApi.PathFileExistsA("spirt/WPTechfiles/fonts") then
+        utils.CreateDirectory("spirt/WPTechfiles/fonts")
     end
-	if not WINApi.PathFileExistsA("spirt/evgenfiles/fonts/icons.ttf") then
-		Utils.DownloadFile("spirt/evgenfiles/fonts/icons.ttf", "https://cdn.discordapp.com/attachments/987332606326636584/988101353077370980/icons.ttf")
+	if not WINApi.PathFileExistsA("spirt/WPTechfiles/fonts/icons.ttf") then
+		Utils.DownloadFile("spirt/WPTechfiles/fonts/icons.ttf", "https://cdn.discordapp.com/attachments/987332606326636584/988101353077370980/icons.ttf")
 	end
 
-	if not WINApi.PathFileExistsA("spirt/evgenfiles/fonts/pixel.ttf") then
-		Utils.DownloadFile("spirt/evgenfiles/fonts/pixel.ttf", "https://cdn.discordapp.com/attachments/987332606326636584/988101353240936488/pixel.ttf")
+	if not WINApi.PathFileExistsA("spirt/WPTechfiles/fonts/pixel.ttf") then
+		Utils.DownloadFile("spirt/WPTechfiles/fonts/pixel.ttf", "https://cdn.discordapp.com/attachments/987332606326636584/988101353240936488/pixel.ttf")
 	end
 
-	if not WINApi.PathFileExistsA("spirt/evgenfiles/fonts/MuseoSansCyrl700.ttf") then
-		Utils.DownloadFile("spirt/evgenfiles/fonts/MuseoSansCyrl700.ttf", "https://cdn.discordapp.com/attachments/987332606326636584/1001360700528132256/MuseoSansCyrl700.ttf")
+	if not WINApi.PathFileExistsA("spirt/WPTechfiles/fonts/MuseoSansCyrl700.ttf") then
+		Utils.DownloadFile("spirt/WPTechfiles/fonts/MuseoSansCyrl700.ttf", "https://cdn.discordapp.com/attachments/987332606326636584/1001360700528132256/MuseoSansCyrl700.ttf")
 	end
     WinInet.DeleteUrlCacheEntryA(link)
     UrlMon.URLDownloadToFileA(nil, link, path, 0, 0)
