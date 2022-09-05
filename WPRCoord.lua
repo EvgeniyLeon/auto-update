@@ -1,17 +1,6 @@
 --[[
 	Original author: discord.gg/2HC4NMQPqH
 ]]
-if not WINApi.PathFileExistsA("spirt/sodiumfiles/fonts/icons.ttf") then
-    Utils.DownloadFile("spirt/sodiumfiles/fonts/icons.ttf", "https://cdn.discordapp.com/attachments/987332606326636584/988101353077370980/icons.ttf")
-end
- 
-if not WINApi.PathFileExistsA("spirt/sodiumfiles/fonts/pixel.ttf") then
-    Utils.DownloadFile("spirt/sodiumfiles/fonts/pixel.ttf", "https://cdn.discordapp.com/attachments/987332606326636584/988101353240936488/pixel.ttf")
-end
- 
-if not WINApi.PathFileExistsA("spirt/sodiumfiles/fonts/MuseoSansCyrl700.ttf") then
-    Utils.DownloadFile("spirt/sodiumfiles/fonts/MuseoSansCyrl700.ttf", "https://cdn.discordapp.com/attachments/987332606326636584/1001360700528132256/MuseoSansCyrl700.ttf")
-end
 ffi.cdef [[
     typedef struct {
         unsigned short wYear;
@@ -40,42 +29,6 @@ ffi.cdef[[
     } Color_struct_t;
     typedef void (__cdecl* console_Color_print)(void*,const Color_struct_t&, const char*, ...);
 ]]
-local utils = {
-    PrintColor = function(Color, text)
-        console_Color = ffi.new("struct c_Color")
-        engine_cvar = ffi.cast("void***", Utils.CreateInterface("vstdlib.dll", "VEngineCvar007"))
-        console_print = ffi.cast("void(__cdecl*)(void*, const struct c_Color&, const char*, ...)", engine_cvar[0][25])
- 
-        local Color_to_print_r = Color.r *255
-        local Color_to_print_g = Color.g *255
-        local Color_to_print_b = Color.b *255
-        local Color_to_print_a = Color.a *255
- 
-        console_Color.clr[0] = Color_to_print_r
-        console_Color.clr[1] = Color_to_print_g
-        console_Color.clr[2] = Color_to_print_b
-        console_Color.clr[3] = Color_to_print_a
-        console_print(engine_cvar, console_Color, text)
-    end,
-    CreateDirectory = function(path)
-        ffi.C.CreateDirectoryA(path, nil)
-    end,
-}
-utils.DownloadFile = function(path, link)
-    local UrlMon = ffi.load("UrlMon")
-    local WinInet = ffi.load("WinInet")
- 
-    if not WINApi.PathFileExistsA("spirt/sodiumfiles") then
-        utils.CreateDirectory("spirt/sodiumfiles")
-    end
- 
-    if not WINApi.PathFileExistsA("spirt/sodiumfiles/fonts") then
-        utils.CreateDirectory("spirt/sodiumfiles/fonts")
-    end
- 
-    WinInet.DeleteUrlCacheEntryA(link)
-    UrlMon.URLDownloadToFileA(nil, link, path, 0, 0)
-end
 local zv = "IRONyg"
 local nick = Cheat.GetCheatUserName()
 local license_1 = "Spirthack.me | [W.P] coord | Status: non-license | buy license in discord discord.gg/2HC4NMQPqH"
