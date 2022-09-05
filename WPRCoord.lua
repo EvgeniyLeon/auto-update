@@ -26,8 +26,8 @@ ffi.cdef[[
         uint8_t g;
         uint8_t b;
         uint8_t a;
-    } Color_struct_t;
-    typedef void (__cdecl* console_Color_print)(void*,const Color_struct_t&, const char*, ...);
+    } c_Color;
+    typedef void (__cdecl* console_Color_print)(void*,const struct c_Color&, const char*, ...);
 ]]
 local zv = "IRONyg"
 local nick = Cheat.GetCheatUserName()
