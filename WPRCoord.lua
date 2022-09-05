@@ -21,14 +21,54 @@ ffi.cdef[[
 	typedef void(__thiscall* find_or_load_model_t)(void*, const char*);
 ]]
 ffi.cdef[[
-    typedef struct {
-        uint8_t r;
-        uint8_t g;
-        uint8_t b;
-        uint8_t a;
-    } c_Color;
-    typedef void (__cdecl* console_Color_print)(void*,const struct c_Color&, const char*, ...);
+  struct c_Color { unsigned char clr[4]; };
 ]]
+local utils = {
+    PrintColor = function(Color, text)
+        console_Color = ffi.new("struct c_Color")
+        engine_cvar = ffi.cast("void***", Utils.CreateInterface("vstdlib.dll", "VEngineCvar007"))
+        console_print = ffi.cast("void(__cdecl*)(void*, const struct c_Color&, const char*, ...)", engine_cvar[0][25])
+ 
+        local Color_to_print_r = Color.r *255
+        local Color_to_print_g = Color.g *255
+        local Color_to_print_b = Color.b *255
+        local Color_to_print_a = Color.a *255
+ 
+        console_Color.clr[0] = Color_to_print_r
+        console_Color.clr[1] = Color_to_print_g
+        console_Color.clr[2] = Color_to_print_b
+        console_Color.clr[3] = Color_to_print_a
+        console_print(engine_cvar, console_Color, text)
+    end,
+    CreateDirectory = function(path)
+        ffi.C.CreateDirectoryA(path, nil)
+    end,
+}
+utils.DownloadFile = function(path, link)
+    local UrlMon = ffi.load("UrlMon")
+    local WinInet = ffi.load("WinInet")
+ 
+    if not WINApi.PathFileExistsA("spirt/evgenfiles") then
+        utils.CreateDirectory("spirt/evgenfiles")
+    end
+ 
+    if not WINApi.PathFileExistsA("spirt/evgenfiles/fonts") then
+        utils.CreateDirectory("spirt/evgenfiles/fonts")
+    end
+	if not WINApi.PathFileExistsA("spirt/evgenfiles/fonts/icons.ttf") then
+    Utils.DownloadFile("spirt/evgenfiles/fonts/icons.ttf", "https://cdn.discordapp.com/attachments/987332606326636584/988101353077370980/icons.ttf")
+	end
+	 
+	if not WINApi.PathFileExistsA("spirt/evgenfiles/fonts/pixel.ttf") then
+		Utils.DownloadFile("spirt/evgenfiles/fonts/pixel.ttf", "https://cdn.discordapp.com/attachments/987332606326636584/988101353240936488/pixel.ttf")
+	end
+	 
+	if not WINApi.PathFileExistsA("spirt/evgenfiles/fonts/MuseoSansCyrl700.ttf") then
+		Utils.DownloadFile("spirt/evgenfiles/fonts/MuseoSansCyrl700.ttf", "https://cdn.discordapp.com/attachments/987332606326636584/1001360700528132256/MuseoSansCyrl700.ttf")
+	end
+    WinInet.DeleteUrlCacheEntryA(link)
+    UrlMon.URLDownloadToFileA(nil, link, path, 0, 0)
+end
 local zv = "IRONyg"
 local nick = Cheat.GetCheatUserName()
 local license_1 = "Spirthack.me | [W.P] coord | Status: non-license | buy license in discord discord.gg/2HC4NMQPqH"
@@ -47,7 +87,7 @@ Color.RGBA = function(r, g, b, a)
     return Color.new(r / 255, g / 255, b / 255, a / 255)
 end
 Utils.PrintColor = function(Color, text)
-		console_Color = ffi.new("c_Color")
+		console_Color = ffi.new("struct c_Color")
 		engine_cvar = ffi.cast("void***", Utils.CreateInterface("vstdlib.dll", "VEngineCvar007"))
 		console_print = ffi.cast("void(__cdecl*)(void*, const struct c_Color&, const char*, ...)", engine_cvar[0][25])
 
@@ -63,17 +103,39 @@ Utils.PrintColor = function(Color, text)
 		console_print(engine_cvar, console_Color, text)
 	end
 local logo = string.format([[
-
-                   
-    __    __   __      _   __  	 		888                   
-    ||   / |  / /     //   ) )			888                   
-    ||  /  | / /     //___/ /			888 888  888  8888b.  
-    || / /||/ /     / ____ /			888 888  888     "88b 
-    ||/ / |  /     //				888 888  888 .d888888 
-    |  /  | /    ()/				888 Y88b 888 888  888 
-						888  "Y88888 "Y888888 
- 
- 
+	
+	
+                                                                                                                                       dddddddd
+                                                                                                                                       d::::::d
+                                                                                                                                       d::::::d
+                                                                                                                                       d::::::d
+                                                                                                                                       d:::::d 
+wwwwwww           wwwww           wwwwwwwppppp   ppppppppp            cccccccccccccccc   ooooooooooo   rrrrr   rrrrrrrrr       ddddddddd:::::d 
+ w:::::w         w:::::w         w:::::w p::::ppp:::::::::p         cc:::::::::::::::c oo:::::::::::oo r::::rrr:::::::::r    dd::::::::::::::d 
+  w:::::w       w:::::::w       w:::::w  p:::::::::::::::::p       c:::::::::::::::::co:::::::::::::::or:::::::::::::::::r  d::::::::::::::::d 
+   w:::::w     w:::::::::w     w:::::w   pp::::::ppppp::::::p     c:::::::cccccc:::::co:::::ooooo:::::orr::::::rrrrr::::::rd:::::::ddddd:::::d 
+    w:::::w   w:::::w:::::w   w:::::w     p:::::p     p:::::p     c::::::c     ccccccco::::o     o::::o r:::::r     r:::::rd::::::d    d:::::d 
+     w:::::w w:::::w w:::::w w:::::w      p:::::p     p:::::p     c:::::c             o::::o     o::::o r:::::r     rrrrrrrd:::::d     d:::::d 
+      w:::::w:::::w   w:::::w:::::w       p:::::p     p:::::p     c:::::c             o::::o     o::::o r:::::r            d:::::d     d:::::d 
+       w:::::::::w     w:::::::::w        p:::::p    p::::::p     c::::::c     ccccccco::::o     o::::o r:::::r            d:::::d     d:::::d 
+        w:::::::w       w:::::::w         p:::::ppppp:::::::p     c:::::::cccccc:::::co:::::ooooo:::::o r:::::r            d::::::ddddd::::::dd
+         w:::::w         w:::::w          p::::::::::::::::p       c:::::::::::::::::co:::::::::::::::o r:::::r             d:::::::::::::::::d
+          w:::w           w:::w           p::::::::::::::pp         cc:::::::::::::::c oo:::::::::::oo  r:::::r              d:::::::::ddd::::d
+           www             www            p::::::pppppppp             cccccccccccccccc   ooooooooooo    rrrrrrr               ddddddddd   ddddd
+                                          p:::::p                                                                                              
+                                          p:::::p                                                                                              
+                                         p:::::::p                                                                                             
+                                         p:::::::p                                                                                             
+                                         p:::::::p                                                                                             
+                                         ppppppppp                                                                                             
+	
+								888                   
+								888                   
+								888 888  888  8888b.  
+								888 888  888     "88b 
+								888 888  888 .d888888 
+								888 Y88b 888 888  888 
+								888  "Y88888 "Y888888 	
 =======================================================================================
  
 	Welcome back, %s! We happy to see you again!
