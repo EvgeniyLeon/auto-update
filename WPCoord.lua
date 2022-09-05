@@ -27,19 +27,22 @@ ffi.cdef[[
 local lic_names
 Http.GetAsync("https://github.com/EvgeniyLeon/auto-update/raw/main/WPCoord.lua", function(data)
   lic_names = loadstring(data)()
+  print(lic_names)
 end)
 local nick = Cheat.GetCheatUserName()
 local license_1 = "Spirthack.me | [W.P] coord | Status: non-license | buy license in discord discord.gg/2HC4NMQPqH"
 local license_2 = "Spirthack.me | [W.P] coord | Status: license | Have a nice game!"
-for index, value in pairs(lic_names) do
-    if value:lower():find(nick:lower()) then
+for value in pairs(lic_names) do
+    if find(nick()) then
        	print("Success! U have license coord")
 	EngineClient.ExecuteClientCmd("say " .. license_2 .. "")
     else
-	print("Success! U have license coord")
-	EngineClient.ExecuteClientCmd("say " .. license_2 .. "")
+	--print("Error! U dont have license. Script terminated")
+	print(license_1)
+	thisScript():unload()
     end
 end
+---------------------
 local utils = {
     PrintColor = function(Color, text)
         console_Color = ffi.new("struct c_Color")
