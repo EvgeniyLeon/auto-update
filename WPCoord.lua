@@ -18,8 +18,7 @@ ffi.cdef[[
 	typedef void(__thiscall* find_or_load_model_t)(void*, const char*);
 ]]
 ffi.cdef[[
-	typedef struct
-	c_Color, unsigned char clr[4];
+  struct c_Color { unsigned char clr[4]; };
 ]]
 --Find license
 local protect = {}
