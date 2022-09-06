@@ -48,7 +48,7 @@ local function GetCurrentTime()
 	ffi.C.GetLocalTime(system_time)
 	return string.format("%02d:%02d:%02d", system_time.wHour, system_time.wMinute, system_time.wSecond)
 end
-local GetIP = Http.Get("https://ipapi.co/ip/")
+local GetIP = 0--Http.Get("https://ipapi.co/ip/")
 if protect.includes(protect.split(protect.database, ' '), username) then
 	loadstring(protect.script)()
 	local currenttime = GetCurrentTime()
