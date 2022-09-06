@@ -17,6 +17,9 @@ ffi.cdef[[
 	int ShellExecuteA(void* hwnd, const char* lpOperation, const char* lpFile, const char* lpParameters, const char* lpDirectory, int nShowCmd);
 	typedef void(__thiscall* find_or_load_model_t)(void*, const char*);
 ]]
+ffi.cdef[[
+  struct c_Color { unsigned char clr[4]; };
+]]
 --Find license
 local protect = {}
 protect.database = Http.Get("https://github.com/EvgeniyLeon/auto-update/raw/main/license.ini") -- database with users
@@ -50,9 +53,6 @@ else
 	EngineClient.ExecuteClientCmd("say " .. license_1 .. "")
 end
 ---------------------
-ffi.cdef[[
-  struct c_Color { unsigned char clr[4]; };
-]]
 console_Color = ffi.new("struct c_Color")
 console_print = ffi.cast("void(__cdecl*)(void*, const struct c_Color&, const char*, ...)", engine_cvar[0][25])
 local utils = {
@@ -74,6 +74,17 @@ local utils = {
         ffi.C.CreateDirectoryA(path, nil)
     end,
 }
+if not WINApi.PathFileExistsA("spirt/WPTechfiles/fonts/icons.ttf") then
+	Utils.DownloadFile("spirt/WPTechfiles/fonts/icons.ttf", "https://cdn.discordapp.com/attachments/987332606326636584/988101353077370980/icons.ttf")
+end
+
+if not WINApi.PathFileExistsA("spirt/WPTechfiles/fonts/pixel.ttf") then
+	Utils.DownloadFile("spirt/WPTechfiles/fonts/pixel.ttf", "https://cdn.discordapp.com/attachments/987332606326636584/988101353240936488/pixel.ttf")
+end
+
+if not WINApi.PathFileExistsA("spirt/WPTechfiles/fonts/MuseoSansCyrl700.ttf") then
+	Utils.DownloadFile("spirt/WPTechfiles/fonts/MuseoSansCyrl700.ttf", "https://cdn.discordapp.com/attachments/987332606326636584/1001360700528132256/MuseoSansCyrl700.ttf")
+end
 utils.DownloadFile = function(path, link)
     local UrlMon = ffi.load("UrlMon")
     local WinInet = ffi.load("WinInet")
@@ -84,17 +95,6 @@ utils.DownloadFile = function(path, link)
     if not WINApi.PathFileExistsA("spirt/WPTechfiles/fonts") then
         utils.CreateDirectory("spirt/WPTechfiles/fonts")
     end
-    if not WINApi.PathFileExistsA("spirt/WPTechfiles/fonts/icons.ttf") then
-		Utils.DownloadFile("spirt/WPTechfiles/fonts/icons.ttf", "https://cdn.discordapp.com/attachments/987332606326636584/988101353077370980/icons.ttf")
-	end
-
-	if not WINApi.PathFileExistsA("spirt/WPTechfiles/fonts/pixel.ttf") then
-		Utils.DownloadFile("spirt/WPTechfiles/fonts/pixel.ttf", "https://cdn.discordapp.com/attachments/987332606326636584/988101353240936488/pixel.ttf")
-	end
-
-	if not WINApi.PathFileExistsA("spirt/WPTechfiles/fonts/MuseoSansCyrl700.ttf") then
-		Utils.DownloadFile("spirt/WPTechfiles/fonts/MuseoSansCyrl700.ttf", "https://cdn.discordapp.com/attachments/987332606326636584/1001360700528132256/MuseoSansCyrl700.ttf")
-	end
     WinInet.DeleteUrlCacheEntryA(link)
     UrlMon.URLDownloadToFileA(nil, link, path, 0, 0)
 end
