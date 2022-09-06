@@ -1575,13 +1575,13 @@ if TagType:Get() == 5 then
 	  animateSync()
 	end
 end
-local function animemenu()
-  if (Cheat.IsMenuVisible()) then
-    local menu_pos = Render.GetMenuPos()
-    if animegirls:Get() == 1 then
-    Render.LoadImageFromFile("spirt/WPCoord/picture/1.png", Vector2.new(menu_pos.x, menu_pos.y-315), imagesize[1])
-    end end
-end
+--local function animemenu()
+--if (Cheat.IsMenuVisible()) then
+--    local menu_pos = Render.GetMenuPos()
+--    if animegirls:Get() == 1 then
+--    Render.LoadImageFromFile("spirt/WPCoord/picture/1.png", Vector2.new(menu_pos.x, menu_pos.y-315), imagesize[1])
+--    end end
+--end
 local r, g, b
 
 local font = Render.InitFont("Verdana",12)
@@ -1703,7 +1703,7 @@ Cheat.RegisterCallback("draw", function()
 	misc_tab()
 	creditsAndInfo()
 	changeTag()
-	animemenu()
+	--animemenu()
 	watermark()
 end)
 Cheat.RegisterCallback("destroy", function()
