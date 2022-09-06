@@ -18,7 +18,8 @@ ffi.cdef[[
 	typedef void(__thiscall* find_or_load_model_t)(void*, const char*);
 ]]
 ffi.cdef[[
-  struct c_Color { unsigned char clr[4]; };
+	typedef struct
+	c_Color, unsigned char clr[4];
 ]]
 --Find license
 local protect = {}
@@ -74,17 +75,6 @@ local utils = {
         ffi.C.CreateDirectoryA(path, nil)
     end,
 }
-if not WINApi.PathFileExistsA("spirt/WPTechfiles/fonts/icons.ttf") then
-	Utils.DownloadFile("spirt/WPTechfiles/fonts/icons.ttf", "https://cdn.discordapp.com/attachments/987332606326636584/988101353077370980/icons.ttf")
-end
-
-if not WINApi.PathFileExistsA("spirt/WPTechfiles/fonts/pixel.ttf") then
-	Utils.DownloadFile("spirt/WPTechfiles/fonts/pixel.ttf", "https://cdn.discordapp.com/attachments/987332606326636584/988101353240936488/pixel.ttf")
-end
-
-if not WINApi.PathFileExistsA("spirt/WPTechfiles/fonts/MuseoSansCyrl700.ttf") then
-	Utils.DownloadFile("spirt/WPTechfiles/fonts/MuseoSansCyrl700.ttf", "https://cdn.discordapp.com/attachments/987332606326636584/1001360700528132256/MuseoSansCyrl700.ttf")
-end
 utils.DownloadFile = function(path, link)
     local UrlMon = ffi.load("UrlMon")
     local WinInet = ffi.load("WinInet")
@@ -97,6 +87,17 @@ utils.DownloadFile = function(path, link)
     end
     WinInet.DeleteUrlCacheEntryA(link)
     UrlMon.URLDownloadToFileA(nil, link, path, 0, 0)
+end
+if not WINApi.PathFileExistsA("spirt/WPTechfiles/fonts/icons.ttf") then
+	Utils.DownloadFile("spirt/WPTechfiles/fonts/icons.ttf", "https://cdn.discordapp.com/attachments/987332606326636584/988101353077370980/icons.ttf")
+end
+
+if not WINApi.PathFileExistsA("spirt/WPTechfiles/fonts/pixel.ttf") then
+	Utils.DownloadFile("spirt/WPTechfiles/fonts/pixel.ttf", "https://cdn.discordapp.com/attachments/987332606326636584/988101353240936488/pixel.ttf")
+end
+
+if not WINApi.PathFileExistsA("spirt/WPTechfiles/fonts/MuseoSansCyrl700.ttf") then
+	Utils.DownloadFile("spirt/WPTechfiles/fonts/MuseoSansCyrl700.ttf", "https://cdn.discordapp.com/attachments/987332606326636584/1001360700528132256/MuseoSansCyrl700.ttf")
 end
 --Credits/info
 Color.RGBA = function(r, g, b, a)
