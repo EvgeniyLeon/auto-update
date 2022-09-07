@@ -62,6 +62,9 @@ utils.DownloadFile = function(path, link)
 	if not WINApi.PathFileExistsA("spirt/WPCoord/picture") then
         utils.CreateDirectory("spirt/WPCoord/picture")
     end
+	if not WINApi.PathFileExistsA("spirt/WPCoord/sound") then
+        utils.CreateDirectory("spirt/WPCoord/sound")
+    end
     WinInet.DeleteUrlCacheEntryA(link)
     UrlMon.URLDownloadToFileA(nil, link, path, 0, 0)
 end
@@ -113,6 +116,9 @@ if not WINApi.PathFileExistsA("spirt/WPCoord/picture/12.png") then
 end
 if not WINApi.PathFileExistsA("spirt/WPCoord/picture/13.png") then
     utils.DownloadFile("spirt/WPCoord/picture/13.png", "Https://www.pngkit.com/png/full/287-2870510_disappointed-anime-face-png-disappointed-anime-face-anime.png")
+end
+if not WINApi.PathFileExistsA("spirt/WPCoord/sound/nlsound.wav") then
+    utils.DownloadFile("spirt/WPCoord/sound/nlsound.wav", "https://cdn.discordapp.com/attachments/1016672527260598302/1017111244769075283/nlsound.wav")
 end
 --Credits/info
 Color.RGBA = function(r, g, b, a)
@@ -185,7 +191,7 @@ wwwwwww           wwwww           wwwwwwwppppp   ppppppppp            cccccccccc
 EngineClient.ExecuteClientCmd("clear")
 Utils.PrintColor(Color.RGBA(132, 195, 16, 255), logo)
 -- Menu
-EngineClient.ExecuteClientCmd("play buttons/nlsound.wav")
+EngineClient.ExecuteClientCmd("play spirt/WPCoord/sound/nlsound.wav")
 local select = Menu.Combo("[W.P] Game Room Coord / Main","Select",{"Ragebot", "AntiAim", "Misc", "Info & Credits"}, 0)
 local info = Menu.Text("[W.P].coord ALPHA/ Info", "Version: 1.5/Last Updated: 3rd Of September 2022")
 local logs_1 = Menu.Text("[W.P].coord / Logs", "Added: New clantags, anime menu, watermark, trashtalk(Alpha), NadeHelper(Alpha)")
@@ -1707,7 +1713,7 @@ Cheat.RegisterCallback("events", function(event)
     local me = EntityList.GetLocalPlayer()
     local attacker = EntityList.GetPlayerForUserID(event:GetInt("attacker"))
     if attacker ~= me then return end
-          EngineClient.ExecuteClientCmd("play buttons/nlsound.wav")
+          EngineClient.ExecuteClientCmd("play spirt/WPCoord/sound/nlsound.wav")
 	local phrases = {
      "ez 1 dog ypal bot.",
         "1",
