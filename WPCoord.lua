@@ -1765,10 +1765,13 @@ local function watermark()
 
 	Render.BoxFilled(Vector2.new(x,y),Vector2.new(x+textSize+20,h-6), water_clr:GetColor())
 
-	local nexttext = "[W.P] coord"
-	Render.Text(nexttext, Vector2.new(var,12), Color.new(255,255,255), 12, font)
+	local nexttext = "[W.P]"
+	Render.Text(nexttext, Vector2.new(var, 12), Color.new(255,255,255), 12, font)
 	local wide = Render.CalcTextSize(nexttext, 12, font)
 	var = var + wide.x
+	
+	localtext = " coord"
+	Render.Text(localtext, Vector2.new(var,12), Color.RGBA(31, 119, 153, 255), 12, font)
 
 	current_user = Cheat.GetCheatUserName()
 	nexttext = " | user: " .. current_user .. ""
