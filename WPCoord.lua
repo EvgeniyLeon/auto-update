@@ -213,6 +213,92 @@ local TagType = Menu.Combo("[W.P].coord / Clantags", "Tag Type", { "Time", "Cust
 local TagText = Menu.TextBox("[W.P].coord / Clantags", "Tag Text", 16, "[W.P]")
 local TagSpeed = Menu.SliderInt("[W.P].coord / Clantags", "Animation Slowness", 15, 1, 24)
 local trashtalk = Menu.Switch("[W.P].coord / Trashtalk", "Dont use this fucking toxic ;)", false)
+local ConsoleCustom = Menu.SwitchColor("[W.P].coord / Console Color", "Change Color", false, Color.new(1.0, 1.0, 1.0))
+
+local engineClient = Utils.CreateInterface("engine.dll", "VEngineClient014")
+local engineClientClass = ffi.cast(ffi.typeof("void***"), engineClient)
+local isConsoleVisible = ffi.cast("bool(__thiscall*)(void*)", engineClientClass[0][11])
+
+local consoleMaterials = {"vgui_white", "vgui/hud/800corner1", "vgui/hud/800corner2", "vgui/hud/800corner3", "vgui/hud/800corner4"}
+local materialList = {}
+
+local oldColor = Color.new(1.0, 1.0, 1.0, 1.0)
+local oldConsoleIsVisible = false
+
+local function isColorEquals(clr1, clr2)
+    return (clr1.r == clr2.r and clr1.g == clr2.g and clr1.b == clr2.b and clr1.a == clr2.a)
+end
+
+local function copyColor(src, dest)
+    dest.r, dest.g, dest.b, dest.a = src.r, src.g, src.b, src.a
+end
+
+local function updateConsoleColor(r, g, b, a)
+    for i = 1, #materialList do
+        local mat = materialList[i]
+        mat:ColorModulate(r, g, b)
+        mat:AlphaModulate(a)
+    end
+end
+
+local function findConsoleMaterials()
+    if materialList[1] then return end
+
+    local material = MatSystem.FirstMaterial()
+    local foundCount = 0
+
+    while(foundCount < 5)
+    do
+        local mat = MatSystem.GetMaterial(material)
+        local name = mat:GetName()
+
+        for i = 1, #consoleMaterials do
+            if name == consoleMaterials[i] then
+                materialList[i] = mat
+                foundCount = foundCount + 1
+                break
+            end
+        end
+
+        material = MatSystem.NextMaterial(material)
+    end
+end
+
+local function main_console_custom()
+    if ConsoleCustom:Get() then
+        findConsoleMaterials()
+
+        local color = ConsoleCustom:GetColor()
+        local consoleVisible = isConsoleVisible(engineClientClass)
+
+        if consoleVisible and not isColorEquals(oldColor, color) then
+            updateConsoleColor(color.r, color.g, color.b, color.a)
+            copyColor(color, oldColor)
+        end
+
+        if consoleVisible ~= oldConsoleIsVisible then
+            if not consoleVisible then
+                updateConsoleColor(1, 1, 1, 1)
+            else
+                updateConsoleColor(color.r, color.g, color.b, color.a)
+            end
+
+            oldConsoleIsVisible = consoleVisible
+        end
+    end
+end
+
+local function cfgConsoleCallback()
+    local color = ConsoleCustom:GetColor()
+    
+    if not ConsoleCustom:Get() then
+        updateConsoleColor(1, 1, 1, 1)
+    elseif isConsoleVisible(engineClientClass) then
+        updateConsoleColor(color.r, color.g, color.b, color.a)
+        copyColor(color, oldColor)
+    end
+end
+--ConsoleCustom:RegisterCallback(cfgConsoleCallback)
 --local antiafk = Menu.Switch("[W.P].coord / AntiAFK", "Turn me", false)
 -- Core
 local _set_clantag = ffi.cast('int(__fastcall*)(const char*, const char*)', Utils.PatternScan('engine.dll', '53 56 57 8B DA 8B F9 FF 15'))
@@ -292,6 +378,7 @@ local function misc_tab()
 		animegirls_right:SetVisible(true)
 		water_clr:SetVisible(true)
 		trashtalk:SetVisible(true)
+		ConsoleCustom:SetVisible(true)
 		--antiafk:SetVisible(true)
     else
         Enabled:SetVisible(false)
@@ -301,6 +388,7 @@ local function misc_tab()
 		animegirls_right:SetVisible(false)
 		water_clr:SetVisible(false)
 		trashtalk:SetVisible(false)
+		ConsoleCustom:SetVisible(false)
 		--antiafk:SetVisible(false)
     end
 end
@@ -1761,6 +1849,7 @@ Cheat.RegisterCallback("draw", function()
 	changeTag()
 	animemenu()
 	watermark()
+	main_console_custom()
 end)
 Cheat.RegisterCallback("destroy", function()
 	undo()
