@@ -1772,6 +1772,8 @@ local function watermark()
 	
 	localtext = " coord"
 	Render.Text(localtext, Vector2.new(var,12), Color.RGBA(31, 119, 153, 255), 12, font)
+	wide = Render.CalcTextSize(nexttext, 12,font)
+	var = var + wide.x
 
 	current_user = Cheat.GetCheatUserName()
 	nexttext = " | user: " .. current_user .. ""
