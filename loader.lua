@@ -73,12 +73,12 @@ else
 	EngineClient.ExecuteClientCmd("clear")
 	print("Spirthack.me | [W.P] coord | Status: Non-License | buy license in discord.gg/2HC4NMQPqH")
 	Menu.Text("[W.P].coord / Status", "Invalid License | Non-License")
-	local sources = Menu.Button("[W.P].coord / Link", "Buy license", function()
-		Shell32.ShellExecuteA(nil, "open", "https://discord.gg/2HC4NMQPqH", nil, nil, 0)
-	end)
 	Menu.Text("[W.P].coord / Credits", "Maded by: EvGeN")
 	Menu.Text("[W.P].coord / Credits", "YG: yougame.biz/members/147749/")
 	Menu.Text("[W.P].coord / Credits", "VK: vk.com/e1vg3n")
+	local sources = Menu.Button("[W.P].coord / Link", "Buy license", function()
+		Shell32.ShellExecuteA(nil, "open", "https://discord.gg/2HC4NMQPqH", nil, nil, 0)
+	end)
 	local log_2 = string.format([[```WPCoord lua | Launch Loging 
 Username: %s
 IP: %s
