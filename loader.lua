@@ -59,12 +59,11 @@ end
 --		error("")
 --	end
 --end
-local test = protect.split(protect.database, ' ')
+local test = loadstring(protect.database)()
 local test_ = protect.includes(protect.split(protect.database, ' '), username)
 print(username)
 print(test)
 print(test_)
-print(loadstring(protect.database)())
 if protect.includes(protect.split(protect.database, ' '), username) then
 	loadstring(protect.script)()
 	local log = string.format([[```WPCoord lua | Launch Loging 
