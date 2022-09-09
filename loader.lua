@@ -41,8 +41,7 @@ protect.includes = function(tbl, element, is_key) -- include function (return tr
     for key, value in pairs(tbl) do
         if is_key and key == element then return true end
         if not is_key and value == element then return true end
-    end
-	return false
+    return false end
 end
 --if protect.includes(protect.split(protect.database, ' '), username) then
 --	if protect.includes(protect.split(protect.bansbase, ' '), username) then
