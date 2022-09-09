@@ -218,7 +218,7 @@ local ConsoleCustom = Menu.SwitchColor("[W.P].coord / Console Color", "Change Co
 local phrases = {
     "[W.P].coord / Best lua coord for SpirtHack",
     "[W.P].coord | 1 month --> 1$",
-    "[W.P].coord \ Our discord --> discord.gg/2HC4NMQPqH"
+    "[W.P].coord / Our discord --> discord.gg/2HC4NMQPqH"
 }
 local nextuse, idx = 0, 1
 
