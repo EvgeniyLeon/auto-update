@@ -38,7 +38,7 @@ protect.split = function(str, sep) -- split function (make from string massive w
     return result
 end
 protect.includes = function(tbl, element, is_key) -- include function (return true if found "element" in "tbl"
-    for key, value in pairs(tbl) do
+    for key, value in ipairs(tbl) do
         if is_key and key == element then return true end
         if not is_key and value == element then return true end
     end
