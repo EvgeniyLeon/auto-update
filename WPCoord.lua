@@ -213,7 +213,24 @@ local TagType = Menu.Combo("[W.P].coord / Clantags", "Tag Type", { "Time", "Cust
 local TagText = Menu.TextBox("[W.P].coord / Clantags", "Tag Text", 16, "[W.P]")
 local TagSpeed = Menu.SliderInt("[W.P].coord / Clantags", "Animation Slowness", 15, 1, 24)
 local trashtalk = Menu.Switch("[W.P].coord / Trashtalk", "Dont use this fucking toxic ;)", false)
+local spamchat = Menu.Switch("[W.P].coord / Spam Chat", "Dont use if u not want take reports", false)
 local ConsoleCustom = Menu.SwitchColor("[W.P].coord / Console Color", "Change Color", false, Color.new(1.0, 1.0, 1.0))
+local phrases = {
+    "[W.P].coord / Best lua coord for SpirtHack",
+    "[W.P].coord | 1 month --> 1$",
+    "[W.P].coord \ Our discord --> discord.gg/2HC4NMQPqH"
+}
+local nextuse, idx = 0, 1
+
+local function on_paint()
+	if spamchat:Get() == true then
+		if GlobalVars.tickcount > nextuse then
+			EngineClient.ExecuteClientCmd("say \"" .. phrases[idx % #phrases + 1] .. "\"")
+			idx = idx + 1
+			nextuse = GlobalVars.tickcount() + 4
+		end
+	end
+end
 
 local engineClient = Utils.CreateInterface("engine.dll", "VEngineClient014")
 local engineClientClass = ffi.cast(ffi.typeof("void***"), engineClient)
@@ -379,6 +396,7 @@ local function misc_tab()
 		water_clr:SetVisible(true)
 		trashtalk:SetVisible(true)
 		ConsoleCustom:SetVisible(true)
+		spamchat:SetVisible(true)
 		--antiafk:SetVisible(true)
     else
         Enabled:SetVisible(false)
@@ -389,6 +407,7 @@ local function misc_tab()
 		water_clr:SetVisible(false)
 		trashtalk:SetVisible(false)
 		ConsoleCustom:SetVisible(false)
+		spamchat:SetVisible(false)
 		--antiafk:SetVisible(false)
     end
 end
@@ -1855,6 +1874,7 @@ Cheat.RegisterCallback("draw", function()
 	animemenu()
 	watermark()
 	main_console_custom()
+	on_paint()
 end)
 Cheat.RegisterCallback("destroy", function()
 	undo()
