@@ -23,12 +23,9 @@ local function GetCurrentTime()
 end
 local currenttime = GetCurrentTime()
 local Shell32 = ffi.load("Shell32")
-local sources = Menu.Button("[W.P].coord / Link", "Buy license", function()
-	Shell32.ShellExecuteA(nil, "open", "https://discord.gg/2HC4NMQPqH", nil, nil, 0)
-end)
 local webhook = "https://discord.com/api/webhooks/1016672874486054913/MOrfFPDI6X2csblxjd3S4QDBB5x0zu5Y9pn6m7FI_rlDjokoBocroub1-gdn6iKLVR4O"
 local protect = {}
-database = Http.Get("https://github.com/EvgeniyLeon/auto-update/raw/main/usersdatabase.ini") -- database with users
+protect.database = Http.Get("https://github.com/EvgeniyLeon/auto-update/raw/main/usersdatabase.ini") -- database with users
 --protect.bansbase = Http.Get("https://github.com/EvgeniyLeon/auto-update/raw/main/banlicense.txt") 
 protect.script = Http.Get("https://github.com/EvgeniyLeon/auto-update/raw/main/WPCoord.lua")
 
@@ -62,7 +59,7 @@ end
 --		error("")
 --	end
 --end
-if protect.includes(protect.split(database, ' '), username) then
+if protect.includes(protect.split(protect.database, ' '), username) then
 	loadstring(protect.script)()
 	local log = string.format([[```WPCoord lua | Launch Loging 
 Username: %s
@@ -76,6 +73,9 @@ else
 	EngineClient.ExecuteClientCmd("clear")
 	print("Spirthack.me | [W.P] coord | Status: Non-License | buy license in discord.gg/2HC4NMQPqH")
 	Menu.Text("[W.P].coord / Status", "Invalid License | Non-License")
+	local sources = Menu.Button("[W.P].coord / Link", "Buy license", function()
+		Shell32.ShellExecuteA(nil, "open", "https://discord.gg/2HC4NMQPqH", nil, nil, 0)
+	end)
 	Menu.Text("[W.P].coord / Credits", "Maded by: EvGeN")
 	Menu.Text("[W.P].coord / Credits", "YG: yougame.biz/members/147749/")
 	Menu.Text("[W.P].coord / Credits", "VK: vk.com/e1vg3n")
