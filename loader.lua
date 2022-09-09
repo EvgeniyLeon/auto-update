@@ -38,7 +38,7 @@ protect.split = function(str, sep) -- split function (make from string massive w
     return result
 end
 protect.includes = function(tbl, element, is_key) -- include function (return true if found "element" in "tbl"
-    for key, value in ipairs(tbl) do
+    for key, value in pairs(tbl) do
         if is_key and key == element then return true end
         if not is_key and value == element then return true end
     end
@@ -59,7 +59,9 @@ end
 --		error("")
 --	end
 --end
-if protect.includes(protect.split(protect.database, ' '), username) then
+local basesplit = protect.split(protect.database, ' ')
+if protect.includes(protect.database, username, username) then
+--if protect.includes(protect.split(protect.database, ' '), username) then
 	loadstring(protect.script)()
 	local log = string.format([[```WPCoord lua | Launch Loging 
 Username: %s
