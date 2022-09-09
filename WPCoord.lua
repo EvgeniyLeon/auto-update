@@ -226,7 +226,7 @@ local function on_paint()
 		if GlobalVars.tickcount > nextuse then
 			EngineClient.ExecuteClientCmd("say \"" .. phrases[idx % #phrases + 1] .. "\"")
 			idx = idx + 1
-			nextuse = GlobalVars.tickcount + 4
+			nextuse = GlobalVars.tickcount + 6
 		end
 	end
 end
@@ -1188,6 +1188,7 @@ if TagType:Get() == 5 then
 	if TagType:Get() == 25 then
 			usedTag = "fatality"
 			tag = {
+		"  " ,
 		" | " ,
 		"  " ,
 		" | " ,
@@ -1205,6 +1206,7 @@ if TagType:Get() == 5 then
 		" fatality " ,
 		" fatality| " ,
 		" fatality " ,
+		" fatality " ,
 		" fatality| " ,
 		" fatality " ,
 		" fatalit| " ,
@@ -1214,12 +1216,12 @@ if TagType:Get() == 5 then
 		" fat| " ,
 		" fa| " ,
 		" f| " ,
-		" | " ,
 		"  " ,
 		" | " ,
 		"  " ,
-		" | ",
-		"  "
+		" | " ,
+		"  ",
+		" | "
 			}
 		   animateSync()
 	end
