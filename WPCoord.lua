@@ -215,6 +215,8 @@ local TagSpeed = Menu.SliderInt("[W.P].coord / Clantags", "Animation Slowness", 
 local trashtalk = Menu.Switch("[W.P].coord / Trashtalk", "Dont use this fucking toxic ;)", false)
 local spamchat = Menu.Switch("[W.P].coord / Spam Chat", "Dont use if u not want take reports", false)
 local ConsoleCustom = Menu.SwitchColor("[W.P].coord / Console Color", "Change Color", false, Color.new(1.0, 1.0, 1.0))
+local watermarks = Menu.Combo("[W.P].coord / Watermarks", "Type", {"None", "Neverlose", "Gamesense"}, 0)
+local water_clr = Menu.ColorEdit("[W.P].coord / Watermark", "Watermark Color", Color.new( 102/255,118/255,202/255))
 local phrases = {
     "[W.P].coord / Best lua coord for SpirtHack",
     "[W.P].coord | 1 month --> 1$",
@@ -365,7 +367,6 @@ Vector2.new(1497 / 4, 1771 / 4),
 Vector2.new(560 / 2, 947 / 2),
 [99]=Vector2.new(809 / 15, 844 / 15) -- killcount
 }
-local water_clr = Menu.ColorEdit("[W.P].coord / Watermark", "Watermark Color", Color.new( 102/255,118/255,202/255 ) )
 
 local function test_1()
     if select:Get() == 0 then
@@ -387,15 +388,20 @@ local sources = Menu.Button("[W.P].coord / Link", "Discord", function()
 end)
 local function misc_tab()
     if select:Get() == 2 then
+		if watermarks:Get() == 1 then
+			water_clr:SetVisible(true)
+		else
+			water_clr:SetVisible(false)
+		end
         Enabled:SetVisible(true)
 		TagType:SetVisible(true)
 		animegirls:SetVisible(true)
 		animegirls_left:SetVisible(true)
 		animegirls_right:SetVisible(true)
-		water_clr:SetVisible(true)
 		trashtalk:SetVisible(true)
 		ConsoleCustom:SetVisible(true)
 		spamchat:SetVisible(true)
+		watermarks:SetVisible(true)
 		--antiafk:SetVisible(true)
     else
         Enabled:SetVisible(false)
@@ -407,6 +413,7 @@ local function misc_tab()
 		trashtalk:SetVisible(false)
 		ConsoleCustom:SetVisible(false)
 		spamchat:SetVisible(false)
+		watermarks:SetVisible(false)
 		--antiafk:SetVisible(false)
     end
 end
@@ -1784,64 +1791,118 @@ end
 
 local textSize = 0
 local function watermark()
-	r = (math.floor(math.sin(GlobalVars.realtime) * 127 + 128)) / 1000 * 3.92
-	g = (math.floor(math.sin(GlobalVars.realtime) * 127 + 128)) / 1000 * 3.92
-	b = (math.floor(math.sin(GlobalVars.realtime) * 127 + 128)) / 1000 * 3.92
+	if select:Get() == 2 then
+		if watermarks:Get() == 1 then
+			r = (math.floor(math.sin(GlobalVars.realtime) * 127 + 128)) / 1000 * 3.92
+			g = (math.floor(math.sin(GlobalVars.realtime) * 127 + 128)) / 1000 * 3.92
+			b = (math.floor(math.sin(GlobalVars.realtime) * 127 + 128)) / 1000 * 3.92
 
-	local screen = EngineClient:GetScreenSize()
-	local fps = get_abs_fps()
-	local ping = get_latency()
-	local currenttimepc = GetCurrentTime()
-	local ticks = math.floor(1.0 / GlobalVars.interval_per_tick)
-	local rightPadding = 20
-	local var = screen.x - textSize - rightPadding
-	local x = var - 10
-	local y = 9
-	local w =  textSize + 20
-	local h = 17
+			local screen = EngineClient:GetScreenSize()
+			local fps = get_abs_fps()
+			local ping = get_latency()
+			local currenttimepc = GetCurrentTime()
+			local ticks = math.floor(1.0 / GlobalVars.interval_per_tick)
+			local rightPadding = 20
+			local var = screen.x - textSize - rightPadding
+			local x = var - 10
+			local y = 9
+			local w =  textSize + 20
+			local h = 17
 
-	Render.BoxFilled(Vector2.new(x,y+2),Vector2.new(x+textSize+20,h * 1.5 + 2), Color.new(17/255,17/255,17/255,100/255))
+			Render.BoxFilled(Vector2.new(x,y+2),Vector2.new(x+textSize+20,h * 1.5 + 2), Color.new(17/255,17/255,17/255,100/255))
 
-	Render.BoxFilled(Vector2.new(x,y),Vector2.new(x+textSize+20,h-6), water_clr:GetColor())
+			Render.BoxFilled(Vector2.new(x,y),Vector2.new(x+textSize+20,h-6), water_clr:GetColor())
 
-	local nexttext = "[W.P]"
-	Render.Text(nexttext, Vector2.new(var, 12), Color.new(255,255,255), 12, font)
-	local wide = Render.CalcTextSize(nexttext, 12, font)
-	var = var + wide.x
-	
-	localtext = " coord"
-	Render.Text(localtext, Vector2.new(var,12), Color.RGBA(31, 119, 153, 255), 12, font)
-	wide = Render.CalcTextSize(nexttext, 12,font)
-	var = var + wide.x
+			local nexttext = "[W.P]"
+			Render.Text(nexttext, Vector2.new(var, 12), Color.new(255,255,255), 12, font)
+			local wide = Render.CalcTextSize(nexttext, 12, font)
+			var = var + wide.x
 
-	current_user = Cheat.GetCheatUserName()
-	nexttext = " | user: " .. current_user .. ""
+			localtext = " coord"
+			Render.Text(localtext, Vector2.new(var,12), Color.RGBA(31, 119, 153, 255), 12, font)
+			wide = Render.CalcTextSize(nexttext, 12,font)
+			var = var + wide.x
 
-	Render.Text(nexttext, Vector2.new(var,12), Color.new(255,255,255), 12,font)
+			current_user = Cheat.GetCheatUserName()
+			nexttext = " | user: " .. current_user .. ""
 
-	wide = Render.CalcTextSize(nexttext, 12,font)
-	var = var + wide.x
+			Render.Text(nexttext, Vector2.new(var,12), Color.new(255,255,255), 12,font)
 
-	nexttext = " | ping: ".. ping .."ms"
+			wide = Render.CalcTextSize(nexttext, 12,font)
+			var = var + wide.x
 
-	Render.Text(nexttext, Vector2.new(var,12), Color.new(255,255,255), 12,font)
+			nexttext = " | ping: ".. ping .."ms"
 
-	wide = Render.CalcTextSize(nexttext, 12,font)
-	var = var + wide.x
+			Render.Text(nexttext, Vector2.new(var,12), Color.new(255,255,255), 12,font)
 
-	--nexttext = " | " .. ticks .. " rate"
+			wide = Render.CalcTextSize(nexttext, 12,font)
+			var = var + wide.x
 
-	--Render.Text(nexttext, Vector2.new(var,12), Color.new(255,255,255), 12,font)
+			--nexttext = " | " .. ticks .. " rate"
 
-	--wide = Render.CalcTextSize(nexttext, 12,font)
-	--var = var + wide.x
-	nexttext = " | " .. currenttimepc .. " time"
+			--Render.Text(nexttext, Vector2.new(var,12), Color.new(255,255,255), 12,font)
 
-	Render.Text(nexttext, Vector2.new(var,12), Color.new(255,255,255), 12,font)
+			--wide = Render.CalcTextSize(nexttext, 12,font)
+			--var = var + wide.x
+			nexttext = " | " .. currenttimepc .. " time"
 
-	wide = Render.CalcTextSize(nexttext, 12,font)
-	var = var + wide.x
-	textSize = var - (screen.x - textSize - rightPadding)
+			Render.Text(nexttext, Vector2.new(var,12), Color.new(255,255,255), 12,font)
+
+			wide = Render.CalcTextSize(nexttext, 12,font)
+			var = var + wide.x
+			textSize = var - (screen.x - textSize - rightPadding)
+		end
+		if watermarks:Get() == 2 then
+			local text = "game" .. "           "
+			local fps = get_abs_fps()
+			local ticks = math.floor(1.0 / GlobalVars.interval_per_tick)
+			local ping = get_latency()
+			local currenttimepc = GetCurrentTime()
+			local current_user = Cheat.GetCheatUserName()
+			--if fps then
+			--    text = text .. " | " .. fps .. " fps"
+			--end
+			if ping then
+			text = text .. " | " .. ping .. " ms"    
+			end
+			if current_user then
+			text = text .. " | " .. current_user   
+			end
+			if ticks then
+			text = text .. " | " .. ticks .. " tick"
+			end
+			if currenttimepc then
+			text = text .. " | " .. currenttimepc
+			end
+			local text_size = Render.CalcTextSize(text , 13)
+			local x = EngineClient.GetScreenSize().x - 10
+			local y = 10
+
+			Render.BoxFilled(Vector2.new(x - text_size.x - 22, y), Vector2.new(x, y + 32), Color.RGBA(4, 4, 4, 255))
+			Render.BoxFilled(Vector2.new(x - text_size.x - 21, y + 1), Vector2.new(x - 1, y + 31), Color.RGBA(54, 54, 54, 255))
+			Render.BoxFilled(Vector2.new(x - text_size.x - 20, y + 2), Vector2.new(x - 2, y + 30), Color.RGBA(34, 34, 34, 255))
+			Render.BoxFilled(Vector2.new(x - text_size.x - 17, y + 5), Vector2.new(x - 5, y + 27), Color.RGBA(54, 54, 54, 255))
+			Render.BoxFilled(Vector2.new(x - text_size.x - 16, y + 6), Vector2.new(x - 6, y + 26), Color.RGBA(4, 4, 4, 255))
+
+			local blue = Color.RGBA(100, 150, 200, 255)
+			local lime = Color.RGBA(180, 230, 100, 255)
+			local pink = Color.RGBA(180, 100, 160, 255)
+			local bluet = Color.RGBA(100, 150, 200, 150)
+			local limet = Color.RGBA(180, 230, 100, 150)
+			local pinkt = Color.RGBA(180, 100, 160, 150)
+
+			--left part
+			Render.GradientBoxFilled(Vector2.new(x - 14 - text_size.x, y + 8), Vector2.new(x - 14 - text_size.x / 2, y + 9), blue, pink, blue, pink);
+			Render.GradientBoxFilled(Vector2.new(x - 14 - text_size.x, y + 9), Vector2.new(x - 14 - text_size.x / 2, y + 10), bluet, pinkt, bluet, pinkt);
+
+			--right part
+			Render.GradientBoxFilled(Vector2.new(x - 14 - text_size.x / 2, y + 8), Vector2.new(x - 8, y + 9), pink, lime, pink, lime);
+			Render.GradientBoxFilled(Vector2.new(x - 14 - text_size.x / 2, y + 9), Vector2.new(x - 8, y + 10), pinkt, limet, pinkt, limet);
+
+			Render.Text("          sense", Vector2.new(x - text_size.x - 11, y + 10), Color.RGBA(160, 200, 80, 255), 13)
+			Render.Text(text, Vector2.new(x - text_size.x - 12, y + 10), Color.RGBA(255, 255, 255, 255), 13)
+		end
+	end
 end
 Cheat.RegisterCallback("events", function(event)
 	if event:GetName() ~= "player_hurt" then return end
