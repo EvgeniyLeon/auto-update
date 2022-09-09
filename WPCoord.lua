@@ -195,7 +195,7 @@ EngineClient.ExecuteClientCmd("clear")
 Utils.PrintColor(Color.RGBA(132, 195, 16, 255), logo)
 -- Menu
 EngineClient.ExecuteClientCmd("play buttons/nlsound.wav")
-local select = Menu.Combo("[W.P] Game Room Coord / Main","Select",{"Ragebot", "AntiAim", "Misc", "Info & Credits"}, 0)
+local select = Menu.Combo("[W.P] Game Room Coord / Main","Select",{"Ragebot", "AntiAim", "Misc", "Info & Credits"}, 3)
 local info = Menu.Text("[W.P].coord ALPHA/ Info", "Version: 1.5/Last Updated: 3rd Of September 2022")
 local logs_1 = Menu.Text("[W.P].coord / Logs", "Added: New clantags, anime menu, watermark, trashtalk(Alpha), NadeHelper(Alpha)")
 local logs_2 = Menu.Text("[W.P].coord / Logs", "Fixed: Watermark(console), bugs")
@@ -220,13 +220,12 @@ local phrases = {
     "[W.P].coord | 1 month --> 1$",
     "[W.P].coord / Our discord --> discord.gg/2HC4NMQPqH"
 }
-local nextuse, idx = 0, 1
+local nextuse = GlobalVars.tickcount + 3, idx = 0, 1
 local function on_paint()
 	if spamchat:Get() == true then
 		if GlobalVars.tickcount > nextuse then
 			EngineClient.ExecuteClientCmd("say \"" .. phrases[idx % #phrases + 1] .. "\"")
 			idx = idx + 1
-			nextuse = GlobalVars.tickcount + 6
 		end
 	end
 end
