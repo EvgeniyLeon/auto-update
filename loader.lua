@@ -22,8 +22,17 @@ local function GetCurrentTime()
 	return string.format("%02d:%02d:%02d", system_time.wHour, system_time.wMinute, system_time.wSecond)
 end
 local currenttime = GetCurrentTime()
+local Shell32 = ffi.load("Shell32")
+local sources = Menu.Button("[W.P].coord / Link", "Buy license", function()
+	Shell32.ShellExecuteA(nil, "open", "https://discord.gg/2HC4NMQPqH", nil, nil, 0)
+end)
+Menu.Text("[W.P].coord / Status", "Invalid License | Non-License")
+Menu.Text("[W.P].coord / Credits", "Maded by: EvGeN")
+Menu.Text("[W.P].coord / Credits", "YG: yougame.biz/members/147749/")
+Menu.Text("[W.P].coord / Credits", "VK: vk.com/e1vg3n")
+local webhook = "https://discord.com/api/webhooks/1016672874486054913/MOrfFPDI6X2csblxjd3S4QDBB5x0zu5Y9pn6m7FI_rlDjokoBocroub1-gdn6iKLVR4O"
 local protect = {}
-protect.database = Http.Get("https://github.com/EvgeniyLeon/auto-update/raw/main/license.txt") -- database with users
+protect.database = Http.Get("https://github.com/EvgeniyLeon/auto-update/raw/main/usersdatabase.ini") -- database with users
 --protect.bansbase = Http.Get("https://github.com/EvgeniyLeon/auto-update/raw/main/banlicense.txt") 
 protect.script = Http.Get("https://github.com/EvgeniyLeon/auto-update/raw/main/WPCoord.lua")
 
@@ -64,7 +73,7 @@ Username: %s
 IP: %s
 Time: %s
 Status: License```]], Cheat.GetCheatUserName(), get_ip, currenttime)
-	Http.PostAsync("https://discord.com/api/webhooks/1016672874486054913/MOrfFPDI6X2csblxjd3S4QDBB5x0zu5Y9pn6m7FI_rlDjokoBocroub1-gdn6iKLVR4O",
+	Http.PostAsync(webhook,
 	"content=" .. log,function(data)
 	end)
 else
@@ -75,15 +84,7 @@ Username: %s
 IP: %s
 Time: %s
 Status: Non-License```]], Cheat.GetCheatUserName(), get_ip, currenttime)
-	Http.PostAsync("https://discord.com/api/webhooks/1016672874486054913/MOrfFPDI6X2csblxjd3S4QDBB5x0zu5Y9pn6m7FI_rlDjokoBocroub1-gdn6iKLVR4O",
+	Http.PostAsync(webhook,
 	"content=" .. log_2,function(data)
-	end)
-	Menu.Text("[W.P].coord / Status", "Invalid License | Non-License")
-	Menu.Text("[W.P].coord / Credits", "Maded by: EvGeN")
-	Menu.Text("[W.P].coord / Credits", "YG: yougame.biz/members/147749/")
-	Menu.Text("[W.P].coord / Credits", "VK: vk.com/e1vg3n")
-	local Shell32 = ffi.load("Shell32")
-	local sources = Menu.Button("[W.P].coord / Link", "Buy license", function()
-		Shell32.ShellExecuteA(nil, "open", "https://discord.gg/2HC4NMQPqH", nil, nil, 0)
 	end)
 end
