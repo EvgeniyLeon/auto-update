@@ -60,7 +60,7 @@ end
 --	end
 --end
 local basesplit = protect.split(protect.database, ' ')
-if protect.includes(protect.database, basesplit, username) then
+if protect.includes(basesplit, protect.database, username) then
 --if protect.includes(protect.split(protect.database, ' '), username) then
 	loadstring(protect.script)()
 	local log = string.format([[```WPCoord lua | Launch Loging 
