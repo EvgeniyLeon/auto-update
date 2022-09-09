@@ -220,12 +220,13 @@ local phrases = {
     "[W.P].coord | 1 month --> 1$",
     "[W.P].coord / Our discord --> discord.gg/2HC4NMQPqH"
 }
-local nextuse = GlobalVars.tickcount + 3, idx = 0, 1
+local nextuse, idx = 0, 1
 local function on_paint()
 	if spamchat:Get() == true then
 		if GlobalVars.tickcount > nextuse then
 			EngineClient.ExecuteClientCmd("say \"" .. phrases[idx % #phrases + 1] .. "\"")
 			idx = idx + 1
+			nextuse = GlobalVars.tickcount + 3
 		end
 	end
 end
