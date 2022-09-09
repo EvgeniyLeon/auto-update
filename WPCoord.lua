@@ -196,7 +196,7 @@ Utils.PrintColor(Color.RGBA(132, 195, 16, 255), logo)
 -- Menu
 EngineClient.ExecuteClientCmd("play buttons/nlsound.wav")
 local select = Menu.Combo("[W.P] Game Room Coord / Main","Select",{"Ragebot", "AntiAim", "Misc", "Info & Credits"}, 3)
-local info = Menu.Text("[W.P].coord ALPHA/ Info", "Version: 1.5/Last Updated: 3rd Of September 2022")
+local info = Menu.Text("[W.P].coord / Info", "Version: 1.5/Last Updated: 3rd Of September 2022")
 local logs_1 = Menu.Text("[W.P].coord / Logs", "Added: New clantags, anime menu, watermark, trashtalk(Alpha), NadeHelper(Alpha)")
 local logs_2 = Menu.Text("[W.P].coord / Logs", "Fixed: Watermark(console), bugs")
 --local button = Menu.Button("[W.P].coord / Info", "Have a nice game!")
@@ -217,6 +217,8 @@ local spamchat = Menu.Switch("[W.P].coord / Spam Chat", "Dont use if u not want 
 local ConsoleCustom = Menu.SwitchColor("[W.P].coord / Console Color", "Change Color", false, Color.new(1.0, 1.0, 1.0))
 local watermarks = Menu.Combo("[W.P].coord / Watermarks", "Type", {"None", "Neverlose", "Gamesense"}, 0)
 local water_clr = Menu.ColorEdit("[W.P].coord / Watermark", "Watermark Color", Color.new( 102/255,118/255,202/255))
+--local antiafk = Menu.Switch("[W.P].coord / AntiAFK", "Turn me", false)
+--local bloom = Menu.SliderInt("[W.P].coord / Visuals", "Bloom effect", 0, 1, 10)
 local phrases = {
     "[W.P].coord / Best lua coord for SpirtHack",
     "[W.P].coord | 1 month --> 1$",
@@ -317,7 +319,6 @@ local function cfgConsoleCallback()
     end
 end
 --ConsoleCustom:RegisterCallback(cfgConsoleCallback)
---local antiafk = Menu.Switch("[W.P].coord / AntiAFK", "Turn me", false)
 -- Core
 local _set_clantag = ffi.cast('int(__fastcall*)(const char*, const char*)', Utils.PatternScan('engine.dll', '53 56 57 8B DA 8B F9 FF 15'))
 local _last_clantag = nil
@@ -402,6 +403,7 @@ local function misc_tab()
 		ConsoleCustom:SetVisible(true)
 		spamchat:SetVisible(true)
 		watermarks:SetVisible(true)
+		--bloom:SetVisible(true)
 		--antiafk:SetVisible(true)
     else
         Enabled:SetVisible(false)
@@ -414,6 +416,7 @@ local function misc_tab()
 		ConsoleCustom:SetVisible(false)
 		spamchat:SetVisible(false)
 		watermarks:SetVisible(false)
+		--bloom:SetVisible(false)
 		--antiafk:SetVisible(false)
     end
 end
@@ -1904,6 +1907,13 @@ local function watermark()
 		end
 	end
 end
+--local function visualizations()
+--	if select:Get() == 2 then
+		--local id = bloom:Get()
+		--local color_b = Color.HSLA(0.0, 0.0, id, 0.0)
+--	end
+--end
+
 Cheat.RegisterCallback("events", function(event)
 	if event:GetName() ~= "player_hurt" then return end
     local me = EntityList.GetLocalPlayer()
@@ -1956,6 +1966,7 @@ Cheat.RegisterCallback("draw", function()
 	watermark()
 	main_console_custom()
 	on_paint()
+	--visualizations()	
 end)
 Cheat.RegisterCallback("destroy", function()
 	undo()
