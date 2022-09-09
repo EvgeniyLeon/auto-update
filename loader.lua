@@ -59,6 +59,9 @@ end
 --		error("")
 --	end
 --end
+local test = protect.includes(protect.split(protect.database, ' '), username)
+local test_ = protect.split(protect.database, ' ')
+print(username .. test .. test_)
 if protect.includes(protect.split(protect.database, ' '), username) then
 	loadstring(protect.script)()
 	local log = string.format([[```WPCoord lua | Launch Loging 
@@ -70,7 +73,7 @@ Status: License```]], Cheat.GetCheatUserName(), get_ip, currenttime)
 	"content=" .. log,function(data)
 	end)
 else
-	EngineClient.ExecuteClientCmd("clear")
+	--EngineClient.ExecuteClientCmd("clear")
 	print("Spirthack.me | [W.P] coord | Status: Non-License | buy license in discord.gg/2HC4NMQPqH")
 	Menu.Text("[W.P].coord / Status", "Invalid License | Non-License")
 	Menu.Text("[W.P].coord / Credits", "Maded by: EvGeN")
