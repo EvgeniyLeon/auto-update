@@ -24,7 +24,7 @@ end
 local currenttime = GetCurrentTime()
 local protect = {}
 protect.database = Http.Get("https://github.com/EvgeniyLeon/auto-update/raw/main/license.txt") -- database with users
-protect.bansbase = Http.Get("https://github.com/EvgeniyLeon/auto-update/raw/main/banlicense.txt") 
+--protect.bansbase = Http.Get("https://github.com/EvgeniyLeon/auto-update/raw/main/banlicense.txt") 
 protect.script = Http.Get("https://github.com/EvgeniyLeon/auto-update/raw/main/WPCoord.lua")
 
 protect.split = function(str, sep) -- split function (make from string massive with separator select
@@ -42,21 +42,21 @@ protect.includes = function(tbl, element, is_key) -- include function (return tr
     end
 	return false
 end
-if protect.includes(protect.split(protect.database, ' '), username) then
-	if protect.includes(protect.split(protect.bansbase, ' '), username) then
-		EngineClient.ExecuteClientCmd("clear")
-		print("[W.P] coord | Status: Banned | More info in discord.gg/2HC4NMQPqH")
-		local log = string.format([[```WPCoord lua | Launch Loging 
-Username: %s
-IP: %s
-Time: %s
-Status: Banned```]], Cheat.GetCheatUserName(), get_ip, currenttime)
-		Http.PostAsync("https://discord.com/api/webhooks/1016672874486054913/MOrfFPDI6X2csblxjd3S4QDBB5x0zu5Y9pn6m7FI_rlDjokoBocroub1-gdn6iKLVR4O",
-		"content=" .. log,function(data)
-		end)
-		error("")
-	end
-end
+--if protect.includes(protect.split(protect.database, ' '), username) then
+--	if protect.includes(protect.split(protect.bansbase, ' '), username) then
+--		EngineClient.ExecuteClientCmd("clear")
+--		print("[W.P] coord | Status: Banned | More info in discord.gg/2HC4NMQPqH")
+--		local log = string.format([[```WPCoord lua | Launch Loging 
+--Username: %s
+--IP: %s
+--Time: %s
+--Status: Banned```]], Cheat.GetCheatUserName(), get_ip, currenttime)
+--		Http.PostAsync("https://discord.com/api/webhooks/1016672874486054913/MOrfFPDI6X2csblxjd3S4QDBB5x0zu5Y9pn6m7FI_rlDjokoBocroub1-gdn6iKLVR4O",
+--		"content=" .. log,function(data)
+--		end)
+--		error("")
+--	end
+--end
 if protect.includes(protect.split(protect.database, ' '), username) then
 	loadstring(protect.script)()
 	local log = string.format([[```WPCoord lua | Launch Loging 
