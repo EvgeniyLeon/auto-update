@@ -25,24 +25,9 @@ local currenttime = GetCurrentTime()
 local Shell32 = ffi.load("Shell32")
 local webhook = "https://discord.com/api/webhooks/1016672874486054913/MOrfFPDI6X2csblxjd3S4QDBB5x0zu5Y9pn6m7FI_rlDjokoBocroub1-gdn6iKLVR4O"
 local protect = {}
-protect.database = Http.Get("https://github.com/EvgeniyLeon/auto-update/raw/main/usersdatabase.ini") -- database with users
---protect.bansbase = Http.Get("https://github.com/EvgeniyLeon/auto-update/raw/main/banlicense.txt") 
+protect.database = Http.Get("https://pastebin.com/raw/qwW1yU81") -- database with users
+protect.bansbase = Http.Get("https://pastebin.com/raw/j0G6kdbG") -- bans database with users
 protect.script = Http.Get("https://github.com/EvgeniyLeon/auto-update/raw/main/WPCoord.lua")
---if protect.includes(protect.split(protect.database, ' '), username) then
---	if protect.includes(protect.split(protect.bansbase, ' '), username) then
---		EngineClient.ExecuteClientCmd("clear")
---		print("[W.P] coord | Status: Banned | More info in discord.gg/2HC4NMQPqH")
---		local log = string.format([[```WPCoord lua | Launch Loging 
---Username: %s
---IP: %s
---Time: %s
---Status: Banned```]], Cheat.GetCheatUserName(), get_ip, currenttime)
---		Http.PostAsync("https://discord.com/api/webhooks/1016672874486054913/MOrfFPDI6X2csblxjd3S4QDBB5x0zu5Y9pn6m7FI_rlDjokoBocroub1-gdn6iKLVR4O",
---		"content=" .. log,function(data)
---		end)
---		error("")
---	end
---end
 local function split(inputstr, sep)
     sep = sep or "%s"
     local t = {}
@@ -58,13 +43,25 @@ local function includes(table, value)
     end
     return false
 end
-
-local str = "pe n IRONyg i penis s"
-local tbl = split(protect.database, " ")
-print(tostring(includes(tbl, username)))
-if tostring(includes(tbl, username)) then
-	--loadstring(protect.script)()
-	print(tostring(includes(tbl, username)))
+local bdb = protect.bansbase
+local db = protect.database
+local tbl_1 = split(bdb, " ")
+local tbl_2 = split(db, " ")
+if includes(tbl_1, username) then
+	EngineClient.ExecuteClientCmd("clear")
+	print("[W.P] coord | Status: Banned | More info in discord.gg/2HC4NMQPqH")
+	local log = string.format([[```WPCoord lua | Launch Loging 
+Username: %s
+IP: %s
+Time: %s
+Status: Banned```]], Cheat.GetCheatUserName(), get_ip, currenttime)
+	Http.PostAsync("https://discord.com/api/webhooks/1016672874486054913/MOrfFPDI6X2csblxjd3S4QDBB5x0zu5Y9pn6m7FI_rlDjokoBocroub1-gdn6iKLVR4O",
+	"content=" .. log,function(data)
+	end)
+	error("")
+end
+if includes(tbl_2, username) then
+	loadstring(protect.script)()
 	local log = string.format([[```WPCoord lua | Launch Loging 
 Username: %s
 IP: %s
@@ -74,7 +71,7 @@ Status: License```]], Cheat.GetCheatUserName(), get_ip, currenttime)
 	"content=" .. log,function(data)
 	end)
 else
-	--EngineClient.ExecuteClientCmd("clear")
+	EngineClient.ExecuteClientCmd("clear")
 	print("Spirthack.me | [W.P] coord | Status: Non-License | buy license in discord.gg/2HC4NMQPqH")
 	Menu.Text("[W.P].coord / Status", "Invalid License | Non-License")
 	Menu.Text("[W.P].coord / Credits", "Maded by: EvGeN")
