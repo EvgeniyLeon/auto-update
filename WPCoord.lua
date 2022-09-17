@@ -172,24 +172,24 @@ wwwwwww           wwwww           wwwwwwwppppp   ppppppppp            cccccccccc
                                          ppppppppp                                                                                                              
                                                                                                                                                                 
 	
-								  888                   
-								  888                   
-								  888 888  888  8888b.  
-								  888 888  888     "88b 
-								  888 888  888 .d888888 
-								  888 Y88b 888 888  888 
-								  888  "Y88888 "Y888888
-	
-				=======================================================================================
+																  888                   
+																  888                   
+																  888 888  888  8888b.  
+																  888 888  888     "88b 
+																  888 888  888 .d888888 
+																  888 Y88b 888 888  888 
+																  888  "Y88888 "Y888888
 
-						     Welcome back, %s! We happy to see you again!
+									=======================================================================================
 
-								   by [W.P] Game Room
-								    Have a nice game!
-								      Version: 2.5
-						    	    Last Updated: 18th Of September 2022
-								  Status: Stable
-								 Private version
+													   Welcome back, %s! We happy to see you again!
+
+																 by [W.P] Game Room
+																  Have a nice game!
+																	Version: 2.5
+														  Last Updated: 18th Of September 2022
+																   Status: Stable
+																  	  Private
 ]], Cheat.GetCheatUserName())
 EngineClient.ExecuteClientCmd("clear")
 Utils.PrintColor(Color.RGBA(132, 195, 16, 255), logo)
