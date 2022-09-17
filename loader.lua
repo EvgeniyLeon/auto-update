@@ -28,22 +28,6 @@ local protect = {}
 protect.database = Http.Get("https://github.com/EvgeniyLeon/auto-update/raw/main/usersdatabase.ini") -- database with users
 --protect.bansbase = Http.Get("https://github.com/EvgeniyLeon/auto-update/raw/main/banlicense.txt") 
 protect.script = Http.Get("https://github.com/EvgeniyLeon/auto-update/raw/main/WPCoord.lua")
-
-protect.split = function(str, sep) -- split function (make from string massive with separator select
-    local result = {}
-    local regex = ("([^%s]+)"):format(sep)
-    for each in str:gmatch(regex) do
-       table.insert(result, each)
-    end
-    return result
-end
-protect.includes = function(tbl, element, is_key) -- include function (return true if found "element" in "tbl"
-    for key, value in pairs(tbl) do
-        if is_key and key == element then return true end
-        if not is_key and value == element then return true end
-    end
-	return false 
-end
 --if protect.includes(protect.split(protect.database, ' '), username) then
 --	if protect.includes(protect.split(protect.bansbase, ' '), username) then
 --		EngineClient.ExecuteClientCmd("clear")
@@ -59,8 +43,27 @@ end
 --		error("")
 --	end
 --end
+local function split(inputstr, sep)
+    sep = sep or "%s"
+    local t = {}
+    for str in string.gmatch(inputstr, "([^"..sep.."]+)") do
+            table.insert(t, str)
+    end
+    return t
+end
+local function includes(table, value)
+    for i = 1, #table do
+        local word = table[i]
+        if word == value then return true end
+    end
+    return false
+end
+local value = "penis"
+local str = "pe ni penis s"
+local tbl = split(str, " ")
+print(tostring(includes(tbl, value)))
 if protect.includes(protect.split(protect.database, ' '), username) then
-	loadstring(protect.script)()
+	--loadstring(protect.script)()
 	local log = string.format([[```WPCoord lua | Launch Loging 
 Username: %s
 IP: %s
