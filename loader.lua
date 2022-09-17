@@ -58,8 +58,10 @@ local function includes(table, value)
     end
     return false
 end
+
+local str = "pe n IRONyg i penis s"
 local tbl = split(protect.database, " ")
---print(tostring(includes(tbl, username)))
+print(tostring(includes(tbl, username)))
 if tostring(includes(tbl, username)) then
 	--loadstring(protect.script)()
 	print(tostring(includes(tbl, username)))
