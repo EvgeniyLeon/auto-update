@@ -61,7 +61,7 @@ end
 local str = protect.database
 local tbl = split(str, " ")
 print(tostring(includes(tbl, username)))
-if includes(tbl, username)) then
+if includes(tbl, username) then
 	--loadstring(protect.script)()
 	--print(tostring(includes(tbl, username)))
 	local log = string.format([[```WPCoord lua | Launch Loging 
