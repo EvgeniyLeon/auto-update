@@ -14,7 +14,6 @@ ffi.cdef [[
     void GetLocalTime(LPSYSTEMTIME lpSystemTime);
 ]]
 local username = Cheat.GetCheatUserName()
-local base_name
 local get_ip = Http.Get("https://ipapi.co/ip/")
 local function GetCurrentTime()
 	local system_time = ffi.new('SYSTEMTIME')
@@ -27,7 +26,9 @@ local webhook = "https://discord.com/api/webhooks/1016672874486054913/MOrfFPDI6X
 local protect = {}
 protect.database = Http.Get("https://pastebin.com/raw/qwW1yU81") -- database with users
 protect.bansbase = Http.Get("https://pastebin.com/raw/j0G6kdbG") -- bans database with users
+protect.devusersbase = Http.Get("https://pastebin.com/raw/b09MT4jT") -- dev database with users
 protect.script = Http.Get("https://github.com/EvgeniyLeon/auto-update/raw/main/WPCoord.lua")
+--protect.script_dev = Http.Get("https://github.com/EvgeniyLeon/auto-update/raw/main/WPCoord.lua")
 local function split(inputstr, sep)
     sep = sep or "%s"
     local t = {}
@@ -45,34 +46,98 @@ local function includes(table, value)
 end
 local bdb = protect.bansbase
 local db = protect.database
+local base_users = protect.devusersbase
 local tbl_1 = split(bdb, " ")
 local tbl_2 = split(db, " ")
+local tbl_3 = split(base_users, " ")
+local base_script = {"Alpha", "Release"}
+local user_status = {"Non-License", "License", "Banned"}
+
+local function dev_users(type)
+	if type == 0 then
+		if includes(tbl_3, username) then
+			local logs = string.format([[```WPCoord lua | Launch Loging 
+Username: %s
+IP: %s
+Time: %s
+Status: %s | %s
+OS: %s %s```]], Cheat.GetCheatUserName(), get_ip, currenttime, user_status[1], base_script[1], ffi.os, jit.arch)
+			Http.PostAsync(webhook,
+			"content=" .. logs,function(data)
+			end)
+		else
+			local logs = string.format([[```WPCoord lua | Launch Loging 
+Username: %s
+IP: %s
+Time: %s
+Status: %s | %s
+OS: %s %s```]], Cheat.GetCheatUserName(), get_ip, currenttime, user_status[1], base_script[2], ffi.os, jit.arch)
+			Http.PostAsync(webhook,
+			"content=" .. logs,function(data)
+			end)
+		end
+	end
+	if type == 1 then
+		if includes(tbl_3, username) then
+			local logs = string.format([[```WPCoord lua | Launch Loging 
+Username: %s
+IP: %s
+Time: %s
+Status: %s | %s
+OS: %s %s```]], Cheat.GetCheatUserName(), get_ip, currenttime, user_status[2], base_script[1], ffi.os, jit.arch)
+			Http.PostAsync(webhook,
+			"content=" .. logs,function(data)
+			end)
+		else
+			local logs = string.format([[```WPCoord lua | Launch Loging 
+Username: %s
+IP: %s
+Time: %s
+Status: %s | %s
+OS: %s %s```]], Cheat.GetCheatUserName(), get_ip, currenttime, user_status[2], base_script[2], ffi.os, jit.arch)
+			Http.PostAsync(webhook,
+			"content=" .. logs,function(data)
+			end)
+		end
+	end
+	if type == 2 then
+		if includes(tbl_3, username) then
+			local logs = string.format([[```WPCoord lua | Launch Loging 
+Username: %s
+IP: %s
+Time: %s
+Status: %s | %s
+OS: %s %s```]], Cheat.GetCheatUserName(), get_ip, currenttime, user_status[3], base_script[1], ffi.os, jit.arch)
+			Http.PostAsync(webhook,
+			"content=" .. logs,function(data)
+			end)
+		else
+			local logs = string.format([[```WPCoord lua | Launch Loging 
+Username: %s
+IP: %s
+Time: %s
+Status: %s | %s
+OS: %s %s```]], Cheat.GetCheatUserName(), get_ip, currenttime, user_status[3], base_script[2], ffi.os, jit.arch)
+			Http.PostAsync(webhook,
+			"content=" .. logs,function(data)
+			end)
+		end
+	end
+end
+
 if includes(tbl_1, username) then
 	EngineClient.ExecuteClientCmd("clear")
 	print("[W.P] coord | Status: Banned | More info in discord.gg/2HC4NMQPqH")
-	local log = string.format([[```WPCoord lua | Launch Loging 
-Username: %s
-IP: %s
-Time: %s
-Status: Banned```]], Cheat.GetCheatUserName(), get_ip, currenttime)
-	Http.PostAsync("https://discord.com/api/webhooks/1016672874486054913/MOrfFPDI6X2csblxjd3S4QDBB5x0zu5Y9pn6m7FI_rlDjokoBocroub1-gdn6iKLVR4O",
-	"content=" .. log,function(data)
-	end)
+	dev_users(2)
 	error("")
 end
+
 if includes(tbl_2, username) then
 	loadstring(protect.script)()
-	local log = string.format([[```WPCoord lua | Launch Loging 
-Username: %s
-IP: %s
-Time: %s
-Status: License```]], Cheat.GetCheatUserName(), get_ip, currenttime)
-	Http.PostAsync(webhook,
-	"content=" .. log,function(data)
-	end)
+	dev_users(1)
 else
 	EngineClient.ExecuteClientCmd("clear")
-	print("Spirthack.me | [W.P] coord | Status: Non-License | buy license in discord.gg/2HC4NMQPqH")
+	print("[W.P] coord | Status: Non-License | buy license in discord.gg/2HC4NMQPqH")
 	Menu.Text("[W.P].coord / Status", "Invalid License | Non-License")
 	Menu.Text("[W.P].coord / Credits", "Maded by: EvGeN")
 	Menu.Text("[W.P].coord / Credits", "YG: yougame.biz/members/147749/")
@@ -80,12 +145,5 @@ else
 	local sources = Menu.Button("[W.P].coord / Link", "Buy license", function()
 		Shell32.ShellExecuteA(nil, "open", "https://discord.gg/2HC4NMQPqH", nil, nil, 0)
 	end)
-	local log_2 = string.format([[```WPCoord lua | Launch Loging 
-Username: %s
-IP: %s
-Time: %s
-Status: Non-License```]], Cheat.GetCheatUserName(), get_ip, currenttime)
-	Http.PostAsync(webhook,
-	"content=" .. log_2,function(data)
-	end)
+	dev_users(0)
 end
