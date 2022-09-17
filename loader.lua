@@ -58,12 +58,11 @@ local function includes(table, value)
     end
     return false
 end
-local value = "penis"
-local str = "pe ni penis s"
-local tbl = split(str, " ")
-print(tostring(includes(tbl, value)))
-if protect.includes(protect.split(protect.database, ' '), username) then
+local tbl = split(protect.database, " ")
+print(tostring(includes(tbl, username)))
+if tostring(includes(tbl, username)) then
 	--loadstring(protect.script)()
+	print(tostring(includes(tbl, username)))
 	local log = string.format([[```WPCoord lua | Launch Loging 
 Username: %s
 IP: %s
