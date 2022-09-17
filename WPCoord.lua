@@ -186,10 +186,10 @@ wwwwwww           wwwww           wwwwwwwppppp   ppppppppp            cccccccccc
 
 								   by [W.P] Game Room
 								    Have a nice game!
-								      Version: 1.5
-						    	    Last Updated: 3rd Of September 2022
-								  Status: Stable (alpha)
-								 Private version(license)
+								      Version: 2.5
+						    	    Last Updated: 18th Of September 2022
+								  Status: Stable
+								 Private version
 ]], Cheat.GetCheatUserName())
 EngineClient.ExecuteClientCmd("clear")
 Utils.PrintColor(Color.RGBA(132, 195, 16, 255), logo)
