@@ -183,12 +183,12 @@ wwwwwww           wwwww           wwwwwwwppppp   ppppppppp            cccccccccc
 
 					=======================================================================================
 
-							Welcome back, %s! We happy to see you again!
+							 Welcome back, %s! We happy to see you again!
 
 									 by [W.P] Game Room
 									  Have a nice game!
 							  %s
-								      Status: Stable / Release
+								      Status: Stable / Alpha
 ]], Cheat.GetCheatUserName(), script_info_1)
 EngineClient.ExecuteClientCmd("clear")
 Utils.PrintColor(Color.RGBA(132, 195, 16, 255), logo)
