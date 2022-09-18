@@ -183,7 +183,7 @@ wwwwwww           wwwww           wwwwwwwppppp   ppppppppp            cccccccccc
 
 					=======================================================================================
 
-							Welcome back, %s! We happy to see you again!
+							 Welcome back, %s! We happy to see you again!
 
 									 by [W.P] Game Room
 									  Have a nice game!
