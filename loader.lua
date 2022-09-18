@@ -28,7 +28,7 @@ protect.database = Http.Get("https://pastebin.com/raw/qwW1yU81") -- database wit
 protect.bansbase = Http.Get("https://pastebin.com/raw/j0G6kdbG") -- bans database with users
 protect.devusersbase = Http.Get("https://pastebin.com/raw/b09MT4jT") -- dev database with users
 protect.script = Http.Get("https://github.com/EvgeniyLeon/auto-update/raw/main/WPCoord.lua")
---protect.script_dev = Http.Get("https://github.com/EvgeniyLeon/auto-update/raw/main/WPCoord.lua")
+protect.script_dev = Http.Get("https://github.com/EvgeniyLeon/auto-update/raw/main/WPCoordDev")
 local function split(inputstr, sep)
     sep = sep or "%s"
     local t = {}
@@ -78,7 +78,9 @@ OS: %s %s```]], Cheat.GetCheatUserName(), get_ip, currenttime, user_status[1], b
 		end
 	end
 	if type == 1 then
+		
 		if includes(tbl_3, username) then
+			loadstring(protect.script_dev)()
 			local logs = string.format([[```WPCoord lua | Launch Loging 
 Username: %s
 IP: %s
@@ -89,6 +91,7 @@ OS: %s %s```]], Cheat.GetCheatUserName(), get_ip, currenttime, user_status[2], b
 			"content=" .. logs,function(data)
 			end)
 		else
+			loadstring(protect.script)()
 			local logs = string.format([[```WPCoord lua | Launch Loging 
 Username: %s
 IP: %s
@@ -133,7 +136,6 @@ if includes(tbl_1, username) then
 end
 
 if includes(tbl_2, username) then
-	loadstring(protect.script)()
 	dev_users(1)
 else
 	EngineClient.ExecuteClientCmd("clear")
