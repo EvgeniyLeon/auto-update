@@ -25,6 +25,7 @@ local function GetCurrentTime()
 	ffi.C.GetLocalTime(system_time)
 	return string.format("%02d:%02d:%02d", system_time.wHour, system_time.wMinute, system_time.wSecond)
 end
+local script_info_1 = "Version: 1.5/Last Updated: 3rd Of September 2022"
 local WINApi = ffi.load("SHLWApi")
 local utils = {
     PrintColor = function(Color, text)
@@ -172,31 +173,29 @@ wwwwwww           wwwww           wwwwwwwppppp   ppppppppp            cccccccccc
                                          ppppppppp                                                                                                              
                                                                                                                                                                 
 	
-																  888                   
-																  888                   
-																  888 888  888  8888b.  
-																  888 888  888     "88b 
-																  888 888  888 .d888888 
-																  888 Y88b 888 888  888 
-																  888  "Y88888 "Y888888
+									888                   
+									888                   
+									888 888  888  8888b.  
+									888 888  888     "88b 
+									888 888  888 .d888888 
+									888 Y88b 888 888  888 
+									888  "Y88888 "Y888888
 
-									=======================================================================================
+					=======================================================================================
 
-													   Welcome back, %s! We happy to see you again!
+								Welcome back, %s! We happy to see you again!
 
-																 by [W.P] Game Room
-																  Have a nice game!
-																	Version: 2.5
-														  Last Updated: 18th Of September 2022
-																   Status: Stable
-																  	  Private
-]], Cheat.GetCheatUserName())
+									 by [W.P] Game Room
+									  Have a nice game!
+							  %s
+								      Status: Stable / Release
+]], Cheat.GetCheatUserName(), script_info_1)
 EngineClient.ExecuteClientCmd("clear")
 Utils.PrintColor(Color.RGBA(132, 195, 16, 255), logo)
 -- Menu
 EngineClient.ExecuteClientCmd("play buttons/nlsound.wav")
 local select = Menu.Combo("[W.P] Game Room Coord / Main","Select",{"Ragebot", "AntiAim", "Misc", "Info & Credits"}, 3)
-local info = Menu.Text("[W.P].coord / Info", "Version: 1.5/Last Updated: 3rd Of September 2022")
+local info = Menu.Text("[W.P].coord / Info", script_info_1)
 local logs_1 = Menu.Text("[W.P].coord / Logs", "Added: New clantags, anime menu, watermark, trashtalk(Alpha), NadeHelper(Alpha)")
 local logs_2 = Menu.Text("[W.P].coord / Logs", "Fixed: Watermark(console), bugs")
 --local button = Menu.Button("[W.P].coord / Info", "Have a nice game!")
