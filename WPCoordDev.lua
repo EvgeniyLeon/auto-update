@@ -358,7 +358,6 @@ local function cfgConsoleCallback()
         copyColor(color, oldColor)
     end
 end
-ConsoleCustom:RegisterCallback(cfgConsoleCallback)
 -- Core
 local _set_clantag = ffi.cast('int(__fastcall*)(const char*, const char*)', Utils.PatternScan('engine.dll', '53 56 57 8B DA 8B F9 FF 15'))
 local _last_clantag = nil
@@ -516,6 +515,7 @@ end
 local function undo()
 	if not EngineClient.IsConnected() then return end
 	set_clantag("")
+	updateConsoleColor(1, 1, 1, 1)
 end
 local function changeTag()
 	if select:Get() == 2 then
@@ -2060,6 +2060,7 @@ Cheat.RegisterCallback("draw", function()
 	on_paint()
 	background()
 end)
+ConsoleCustom:RegisterCallback(cfgConsoleCallback)
 Cheat.RegisterCallback("destroy", function()
 	undo()
 end)
