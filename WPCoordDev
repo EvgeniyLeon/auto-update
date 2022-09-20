@@ -188,7 +188,7 @@ wwwwwww           wwwww           wwwwwwwppppp   ppppppppp            cccccccccc
 									 by [W.P] Game Room
 									  Have a nice game!
 							  %s
-								      Status: Stable / Release
+								      Status: Stable / Alpha
 ]], Cheat.GetCheatUserName(), script_info_1)
 EngineClient.ExecuteClientCmd("clear")
 Utils.PrintColor(Color.RGBA(132, 195, 16, 255), logo)
