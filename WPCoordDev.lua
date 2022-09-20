@@ -515,7 +515,6 @@ end
 local function undo()
 	if not EngineClient.IsConnected() then return end
 	set_clantag("")
-	updateConsoleColor(1, 1, 1, 1)
 end
 local function changeTag()
 	if select:Get() == 2 then
@@ -2062,5 +2061,6 @@ Cheat.RegisterCallback("draw", function()
 end)
 ConsoleCustom:RegisterCallback(cfgConsoleCallback)
 Cheat.RegisterCallback("destroy", function()
+	updateConsoleColor(1, 1, 1, 1)
 	undo()
 end)
